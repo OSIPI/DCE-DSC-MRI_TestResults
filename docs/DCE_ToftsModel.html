@@ -37,17 +37,19 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -396,8 +398,8 @@ for more information.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 101 ms, sys: 27.4 ms, total: 128 ms
-Wall time: 70.8 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 94.5 ms, sys: 32 ms, total: 127 ms
+Wall time: 71.7 ms
 </pre></div>
 </div>
 <img alt="_images/DCE_ToftsModel_8_1.png" src="_images/DCE_ToftsModel_8_1.png" />
@@ -418,8 +420,8 @@ To use the future default and silence this warning we advise to pass `rcond=None
   B = np.linalg.lstsq(A, signal)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 61.5 ms, sys: 316 µs, total: 61.8 ms
-Wall time: 61.1 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 125 ms, sys: 0 ns, total: 125 ms
+Wall time: 125 ms
 </pre></div>
 </div>
 <img alt="_images/DCE_ToftsModel_10_2.png" src="_images/DCE_ToftsModel_10_2.png" />
@@ -439,8 +441,8 @@ Wall time: 61.1 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 266 ms, sys: 503 µs, total: 266 ms
-Wall time: 266 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 294 ms, sys: 0 ns, total: 294 ms
+Wall time: 295 ms
 </pre></div>
 </div>
 <img alt="_images/DCE_ToftsModel_12_1.png" src="_images/DCE_ToftsModel_12_1.png" />
@@ -456,8 +458,8 @@ Wall time: 266 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 369 ms, sys: 3.88 ms, total: 373 ms
-Wall time: 373 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 391 ms, sys: 0 ns, total: 391 ms
+Wall time: 390 ms
 </pre></div>
 </div>
 <img alt="_images/DCE_ToftsModel_14_1.png" src="_images/DCE_ToftsModel_14_1.png" />
@@ -473,8 +475,8 @@ Wall time: 373 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 697 ms, sys: 456 µs, total: 697 ms
-Wall time: 697 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 736 ms, sys: 3.39 ms, total: 740 ms
+Wall time: 740 ms
 </pre></div>
 </div>
 <img alt="_images/DCE_ToftsModel_16_1.png" src="_images/DCE_ToftsModel_16_1.png" />
@@ -490,8 +492,8 @@ Wall time: 697 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 707 ms, sys: 7.7 ms, total: 715 ms
-Wall time: 715 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 812 ms, sys: 0 ns, total: 812 ms
+Wall time: 812 ms
 </pre></div>
 </div>
 <img alt="_images/DCE_ToftsModel_18_1.png" src="_images/DCE_ToftsModel_18_1.png" />
@@ -524,11 +526,11 @@ Wall time: 715 ms
 [Parallel(n_jobs=1)]: Done   4 out of   4 | elapsed:    0.5s remaining:    0.0s
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 8.86 s, sys: 269 ms, total: 9.13 s
-Wall time: 8.75 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 9.65 s, sys: 243 ms, total: 9.9 s
+Wall time: 9.49 s
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=1)]: Done  30 out of  30 | elapsed:    8.5s finished
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Parallel(n_jobs=1)]: Done  30 out of  30 | elapsed:    9.2s finished
 </pre></div>
 </div>
 </div>

@@ -37,20 +37,22 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tofts Model" href="ToftsModel.html" />
@@ -356,18 +358,18 @@ To speed up the fits, only a single voxel from each block will be selected:</p>
 LINEAR LEAST SQUARES
  
 LLS - Edinburgh
-CPU times: user 46.9 ms, sys: 8.93 ms, total: 55.8 ms
-Wall time: 41.5 ms
+CPU times: user 48.5 ms, sys: 13.6 ms, total: 62.1 ms
+Wall time: 47.5 ms
  
 LLS - Sydney
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.7 s, sys: 14.1 ms, total: 2.72 s
-Wall time: 2.72 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2.89 s, sys: 0 ns, total: 2.89 s
+Wall time: 2.88 s
  
 LLS - McGill
-CPU times: user 1.52 ms, sys: 87 µs, total: 1.61 ms
-Wall time: 1.25 ms
+CPU times: user 1.65 ms, sys: 0 ns, total: 1.65 ms
+Wall time: 1.31 ms
  
 ========================
 NON-LINEAR LEAST SQUARES
@@ -375,18 +377,18 @@ NON-LINEAR LEAST SQUARES
 NLS - Edinburgh
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.52 s, sys: 3.82 ms, total: 1.53 s
-Wall time: 1.52 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.62 s, sys: 0 ns, total: 1.62 s
+Wall time: 1.62 s
  
 NLS - Sydney
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.64 s, sys: 3.93 ms, total: 3.65 s
-Wall time: 3.64 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4 s, sys: 14.5 ms, total: 4.01 s
+Wall time: 3.99 s
  
 NLS - McGill
-CPU times: user 3.91 ms, sys: 0 ns, total: 3.91 ms
-Wall time: 3.59 ms
+CPU times: user 3.87 ms, sys: 0 ns, total: 3.87 ms
+Wall time: 3.52 ms
  
 </pre></div>
 </div>
