@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OSIPI Code Demo &#8212; OSIPI Code</title>
+    <title>OSIPI DCE-DSC code &#8212; OSIPI Code</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="T1 mapping" href="T1mapping.html" />
+    <link rel="next" title="Contributors" href="contributors.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -93,14 +93,19 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1 current">
   <a class="reference internal" href="#">
-   OSIPI Code Demo
+   OSIPI DCE-DSC code
   </a>
  </li>
 </ul>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributors.html">
+   Contributors
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="T1mapping.html">
-   T1 mapping
+  <a class="reference internal" href="DCE.html">
+   DCE functionality
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -108,70 +113,70 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vfatestoverview.html">
-     VFA T1 Mapping: Test Overview
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="T1mapping.html">
+     T1 mapping
     </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="VariableFlipAngle.html">
+       Variable flip angle mapping
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="T1_tests_output.html">
-     Visualize output T1 mapping tests
+    <a class="reference internal" href="SItoC.html">
+     Signal to Concentration
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="T1mapping_QIBAv1.html">
-     QIBA v1
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="DCEmodels.html">
+     DCE models
     </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="T1mapping_QIBAv2.html">
-     QIBA v2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="ToftsModel.html">
-   Tofts Model
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="DCE_ToftsModel.html">
-     QIBA V6 - Tofts Model
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="guidelines.html">
-   Guidelines for code contribution
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="localguide.html">
-     Create a copy of the respository and contribute changes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="localtests.html">
-     Creating a Python test file
-    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ToftsModel.html">
+       Tofts model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ExtendedToftsModel.html">
+       Extended Tofts model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="PatlakModel.html">
+       Patlak Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2cmpExchangeModel.html">
+       Two-compartment exchange model
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="contributors.html">
-   Contributors
+  <a class="reference internal" href="DSC.html">
+   DSC test results
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="guidelines.html">
+   Want to contribute?
   </a>
  </li>
 </ul>
@@ -240,6 +245,34 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-osipi-tf2-3-and-the-osipi-code-collection">
+   About OSIPI TF2.3 and the OSIPI code collection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scientific-validation">
+   Scientific validation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose-of-this-website">
+   Purpose of this website
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remarks">
+   Remarks
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -247,21 +280,78 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>OSIPI Code Demo</h1>
+                <h1>OSIPI DCE-DSC code</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-osipi-tf2-3-and-the-osipi-code-collection">
+   About OSIPI TF2.3 and the OSIPI code collection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scientific-validation">
+   Scientific validation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose-of-this-website">
+   Purpose of this website
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remarks">
+   Remarks
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="osipi-code-demo">
-<h1>OSIPI Code Demo<a class="headerlink" href="#osipi-code-demo" title="Permalink to this headline">¶</a></h1>
-<p>This is a demo of the code in <a class="reference external" href="https://github.com/OSIPI/DCE-DSC-MRI_CodeCollection">OSIPI Code Collection</a>.</p>
-<p>The current demo focuses on T1 mapping using variable flip angle data.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="osipi-dce-dsc-code">
+<h1>OSIPI DCE-DSC code<a class="headerlink" href="#osipi-dce-dsc-code" title="Permalink to this headline">¶</a></h1>
+<p>This website publishes the results of the test results of the code in <a class="reference external" href="https://github.com/OSIPI/DCE-DSC-MRI_CodeCollection">OSIPI Code Collection</a>.</p>
+<div class="section" id="about-osipi-tf2-3-and-the-osipi-code-collection">
+<h2>About OSIPI TF2.3 and the OSIPI code collection<a class="headerlink" href="#about-osipi-tf2-3-and-the-osipi-code-collection" title="Permalink to this headline">¶</a></h2>
+<p>The ISMRM Open-Source Initiative for Perfusion Imaging (OSIPI) aims to promote the sharing of perfusion imaging software in order to reduce duplication, improve reproducibility and speed up translation.
+The DCE-DSC-MRI_CodeCollection code library is an ongoing project maintained by Taskforce 2.3 of OSIPI and aims to collect, test and share open-source code for the analysis of dynamic contrast-enhanced (DCE-) and dynamic susceptibility-enhanced (DSC-) MRI for use in research and software development.
+Code contributions can include modules covering one or more steps within the image processing pipeline, for example T1 mapping, converting signal to concentration and pharmacokinetic modelling.
+A further aim of OSIPI is to develop a fully tested and harmonised code library, drawing on the contributions within this repository.</p>
+</div>
+<div class="section" id="scientific-validation">
+<h2>Scientific validation<a class="headerlink" href="#scientific-validation" title="Permalink to this headline">¶</a></h2>
+<p>The goal of a testing framework was to verify and compare the output of contributions of a specific functionality, i.e. scientific validation.
+At this stage we were not concerned with testing non-scientific questions such as checking for valid parameters.
+This will become more relevant when a final DCE/DSC package will be developed.
+A testing framework with pytest package and Github Actions was set up for automated testing of contributed source code.
+Test files were created in the test directory of the repository and structured per category.
+For each contribution a separate test file was created, but contributions within the same category used the same testing data and tolerances.</p>
+</div>
+<div class="section" id="purpose-of-this-website">
+<h2>Purpose of this website<a class="headerlink" href="#purpose-of-this-website" title="Permalink to this headline">¶</a></h2>
+<p>The output of pytest is pass or fail dependent on the defined tolerances.
+This will identify contributions with large differences with the reference values.
+However, this does not provide enough detail to compare the accuracy of different contributions.
+Therefore, the purpose of this website is to provide the end users of the contributed code with more detailed information about the degree of variation in the results.
+In this way, users of the repository can make a more informed decision of which code snippet to use for their own analysis.
+As the choice may depend on the application, we are not giving recommendations on which code contribution is best.
+Instead we are showing the differences based on the test data that was currently used.</p>
+</div>
+<div class="section" id="remarks">
+<h2>Remarks<a class="headerlink" href="#remarks" title="Permalink to this headline">¶</a></h2>
+<p>If you would like to contribute to this part of the OSIPI initiative please email the contacts listed on our <a class="reference external" href="https://www.osipi.org/task-force-2-3/">website</a>.</p>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -291,10 +381,10 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="T1mapping.html" title="next page">
+    <a class='right-next' id="next-link" href="contributors.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">T1 mapping</p>
+        <p class="prev-next-title">Contributors</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

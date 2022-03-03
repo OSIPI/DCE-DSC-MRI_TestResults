@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tofts Model &#8212; OSIPI Code</title>
+    <title>Tofts model &#8212; OSIPI Code</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,12 +51,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="QIBA V6 - Tofts Model" href="DCE_ToftsModel.html" />
-    <link rel="prev" title="QIBA v2" href="T1mapping_QIBAv2.html" />
+    <link rel="next" title="Extended Tofts model" href="ExtendedToftsModel.html" />
+    <link rel="prev" title="DCE models" href="DCEmodels.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,85 +94,90 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   OSIPI Code Demo
+   OSIPI DCE-DSC code
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="T1mapping.html">
-   T1 mapping
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributors.html">
+   Contributors
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="DCE.html">
+   DCE functionality
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vfatestoverview.html">
-     VFA T1 Mapping: Test Overview
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="T1mapping.html">
+     T1 mapping
     </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="VariableFlipAngle.html">
+       Variable flip angle mapping
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="T1_tests_output.html">
-     Visualize output T1 mapping tests
+    <a class="reference internal" href="SItoC.html">
+     Signal to Concentration
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="T1mapping_QIBAv1.html">
-     QIBA v1
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="DCEmodels.html">
+     DCE models
     </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="T1mapping_QIBAv2.html">
-     QIBA v2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   Tofts Model
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="DCE_ToftsModel.html">
-     QIBA V6 - Tofts Model
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="guidelines.html">
-   Guidelines for code contribution
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="localguide.html">
-     Create a copy of the respository and contribute changes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="localtests.html">
-     Creating a Python test file
-    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Tofts model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ExtendedToftsModel.html">
+       Extended Tofts model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="PatlakModel.html">
+       Patlak Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2cmpExchangeModel.html">
+       Two-compartment exchange model
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="contributors.html">
-   Contributors
+  <a class="reference internal" href="DSC.html">
+   DSC test results
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="guidelines.html">
+   Want to contribute?
   </a>
  </li>
 </ul>
@@ -218,9 +221,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/ToftsModel.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/ToftsModel.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -238,11 +241,68 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/OSIPI/DCE-DSC-MRI_CodeCollection/demo?urlpath=lab/tree/notebooks/ToftsModel.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-data">
+   Test data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notes">
+   Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -250,11 +310,51 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Tofts Model</h1>
+                <h1>Tofts model</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#background">
+   Background
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-data">
+   Test data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data">
+   Import data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#results">
+   Results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notes">
+   Notes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -262,15 +362,46 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="tofts-model">
-<h1>Tofts Model<a class="headerlink" href="#tofts-model" title="Permalink to this headline">¶</a></h1>
-<p>The Tofts model describes has the following form:</p>
-<div class="math notranslate nohighlight">
-\[
-c(t) = K^{trans} \cdot c_a(t) \ast \exp(-k_{ep} \cdot t)
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(c(t)\)</span> is the tracer concentration in the tissue of interest, <span class="math notranslate nohighlight">\(c_a(t)\)</span> is the arterial input function, <span class="math notranslate nohighlight">\(t\)</span> is time, and <span class="math notranslate nohighlight">\(\ast\)</span> denotes the convolution operator.
-The fitting parameters are the transfer constant <span class="math notranslate nohighlight">\(K^{trans}\)</span> and the rate constant <span class="math notranslate nohighlight">\(k_{ep}\)</span> which is also equal to <span class="math notranslate nohighlight">\(K^{trans}/v_e\)</span> where <span class="math notranslate nohighlight">\(v_e\)</span> is the extravascular extracellular space.</p>
-<div class="toctree-wrapper compound">
+<h1>Tofts model<a class="headerlink" href="#tofts-model" title="Permalink to this headline">¶</a></h1>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>some background on the method if necessary</p>
+</div>
+<div class="section" id="test-data">
+<h2>Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">¶</a></h2>
+<p>Explain data that is being used
+Tolerances</p>
+</div>
+<div class="section" id="import-data">
+<h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare data for bland-altman like plots</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>Additional notes/remarks</p>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 
@@ -299,17 +430,17 @@ The fitting parameters are the transfer constant <span class="math notranslate n
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="T1mapping_QIBAv2.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="DCEmodels.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">QIBA v2</p>
+            <p class="prev-next-title">DCE models</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="DCE_ToftsModel.html" title="next page">
+    <a class='right-next' id="next-link" href="ExtendedToftsModel.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">QIBA V6 - Tofts Model</p>
+        <p class="prev-next-title">Extended Tofts model</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

@@ -51,12 +51,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="VFA T1 Mapping: Test Overview" href="vfatestoverview.html" />
-    <link rel="prev" title="OSIPI Code Demo" href="intro.html" />
+    <link rel="next" title="Variable flip angle mapping" href="VariableFlipAngle.html" />
+    <link rel="prev" title="DCE functionality" href="DCE.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,85 +94,90 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   OSIPI Code Demo
+   OSIPI DCE-DSC code
   </a>
  </li>
 </ul>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributors.html">
+   Contributors
+  </a>
+ </li>
  <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
-   T1 mapping
+  <a class="reference internal" href="DCE.html">
+   DCE functionality
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="vfatestoverview.html">
-     VFA T1 Mapping: Test Overview
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="current reference internal" href="#">
+     T1 mapping
     </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="VariableFlipAngle.html">
+       Variable flip angle mapping
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="T1_tests_output.html">
-     Visualize output T1 mapping tests
+    <a class="reference internal" href="SItoC.html">
+     Signal to Concentration
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="T1mapping_QIBAv1.html">
-     QIBA v1
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="DCEmodels.html">
+     DCE models
     </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="T1mapping_QIBAv2.html">
-     QIBA v2
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="ToftsModel.html">
-   Tofts Model
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="DCE_ToftsModel.html">
-     QIBA V6 - Tofts Model
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="guidelines.html">
-   Guidelines for code contribution
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="localguide.html">
-     Create a copy of the respository and contribute changes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="localtests.html">
-     Creating a Python test file
-    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ToftsModel.html">
+       Tofts model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="ExtendedToftsModel.html">
+       Extended Tofts model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="PatlakModel.html">
+       Patlak Model
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2cmpExchangeModel.html">
+       Two-compartment exchange model
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="contributors.html">
-   Contributors
+  <a class="reference internal" href="DSC.html">
+   DSC test results
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="guidelines.html">
+   Want to contribute?
   </a>
  </li>
 </ul>
@@ -263,19 +266,8 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="t1-mapping">
 <h1>T1 mapping<a class="headerlink" href="#t1-mapping" title="Permalink to this headline">¶</a></h1>
-<p>The MRI signal in a spoiled gradient recalled echo is described by:</p>
-<div class="math notranslate nohighlight">
-\[
-S = M_0 \sin(\alpha) \frac{1 - \exp(-TR/T_1)}{1 - \cos(\alpha) \exp(-TR/T_1)} \exp(-TE/T_2)
-\]</div>
-<p>The acquisition parameters are the flip angle <span class="math notranslate nohighlight">\(\alpha\)</span>, repetition time <span class="math notranslate nohighlight">\(TR\)</span> and echo time <span class="math notranslate nohighlight">\(TE\)</span>—these are controlled by the scanner and are known<a class="footnote-reference brackets" href="#id2" id="id1">1</a>.
-The goal of T1 mapping is to estimate the tissue-specific parameters—the magnetization <span class="math notranslate nohighlight">\(M_0\)</span> and spin-lattice relaxation time <span class="math notranslate nohighlight">\(T_1\)</span>.</p>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Let’s ignore B1 effects for now.</p>
-</dd>
-</dl>
+<p>The subsections describe the estimation of T1 values.
+At the moment we have several implementations of the variable flip angle approach available.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -305,17 +297,17 @@ The goal of T1 mapping is to estimate the tissue-specific parameters—the magne
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="DCE.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">OSIPI Code Demo</p>
+            <p class="prev-next-title">DCE functionality</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="vfatestoverview.html" title="next page">
+    <a class='right-next' id="next-link" href="VariableFlipAngle.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">VFA T1 Mapping: Test Overview</p>
+        <p class="prev-next-title">Variable flip angle mapping</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
