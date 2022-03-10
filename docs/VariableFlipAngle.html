@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Variable flip angle mapping &#8212; OSIPI Code</title>
+    <title>Variable flip angle technique &#8212; OSIPI Code</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Population arterial Input function" href="PopulationAIF.html" />
@@ -126,7 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
     <ul class="current">
      <li class="toctree-l3 current active">
       <a class="current reference internal" href="#">
-       Variable flip angle mapping
+       Variable flip angle technique
       </a>
      </li>
     </ul>
@@ -301,9 +303,26 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-data">
-   Test data
+  <a class="reference internal nav-link" href="#description-of-test-data">
+   Description of test data
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba">
+     Digital reference object (DRO) provided by the quantitative imaging biomarker alliance (QIBA).
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-vivo-data-from-a-brain-patient">
+     In-vivo data from a brain patient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-vivo-data-from-patients-with-prostate-cancer">
+     In-vivo data from patients with prostate cancer
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-data">
@@ -311,38 +330,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linear-fit-methods">
-   Linear fit methods
+  <a class="reference internal nav-link" href="#dro-data">
+   DRO data
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dro-data">
-     DRO data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#in-vivo-data">
-     In-vivo data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonlinear-fit-methods">
-   Nonlinear fit methods
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dro-results">
-     DRO results
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#in-vivo-results">
-     In-vivo results
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notes">
@@ -366,7 +356,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Variable flip angle mapping</h1>
+                <h1>Variable flip angle technique</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -382,9 +372,26 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#test-data">
-   Test data
+  <a class="reference internal nav-link" href="#description-of-test-data">
+   Description of test data
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba">
+     Digital reference object (DRO) provided by the quantitative imaging biomarker alliance (QIBA).
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-vivo-data-from-a-brain-patient">
+     In-vivo data from a brain patient
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-vivo-data-from-patients-with-prostate-cancer">
+     In-vivo data from patients with prostate cancer
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#import-data">
@@ -392,38 +399,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linear-fit-methods">
-   Linear fit methods
+  <a class="reference internal nav-link" href="#dro-data">
+   DRO data
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dro-data">
-     DRO data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#in-vivo-data">
-     In-vivo data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonlinear-fit-methods">
-   Nonlinear fit methods
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dro-results">
-     DRO results
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#in-vivo-results">
-     In-vivo results
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notes">
@@ -446,55 +424,163 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="variable-flip-angle-mapping">
-<h1>Variable flip angle mapping<a class="headerlink" href="#variable-flip-angle-mapping" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="variable-flip-angle-technique">
+<h1>Variable flip angle technique<a class="headerlink" href="#variable-flip-angle-technique" title="Permalink to this headline">¶</a></h1>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import statements</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">csv</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">plotting_results_nb</span> <span class="kn">import</span> <span class="n">plot_bland_altman</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 7&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">csv</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">plotting_results_nb</span> <span class="kn">import</span> <span class="n">plot_bland_altman</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
-<p>some background on the method if necessary</p>
+<p>Variable flip angle (VFA) technique is a rapid T1 mapping technique based on the acquisition of several spoiled-gradient echo sequences with different flip angles (to do: add refs here).
+The minumum number of flip angle acquisitions is two.
+VFA is often used to estimate T1 values in clinically reasonable scan times. However, it is known not to be very accurate and precise (to do: add refs here).</p>
+<p>The following equation holds when a spoiled-gradient echo sequence is being used:
+$<span class="math notranslate nohighlight">\(
+    S(\theta) = \rho_0 \cdot \frac{\mathrm{sin}(\theta)(1-E_1)}{1-\mathrm{cos}(\theta) \cdot E_1}        
+\)</span>$</p>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+    E_1 = e^{\frac{-\mathrm{TR}}{T_1}}
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(S(\theta)\)</span> being the signal intensity at a certain flip angle <span class="math notranslate nohighlight">\(\theta\)</span>,  <span class="math notranslate nohighlight">\(\rho_0\)</span> the spin density including system gain contributions, and TR the repetition time.</p>
+<p>For fast calculation of T1 the problem is often linearized. If <span class="math notranslate nohighlight">\(\frac{S(\theta)}{sin(\theta)}\)</span> is a linear function of <span class="math notranslate nohighlight">\(\frac{S(\theta)}{tan(\theta)}\)</span>, E_1, the slope of the line, can be calculated using linear regression.  This is what is done typically in the linear fit implementations.</p>
+<div class="math notranslate nohighlight">
+\[
+    \frac{S(\theta)}{sin(\theta)} = S_0(1-E_1) + E_1 \cdot \frac{S(\theta)}{tan(\theta)}
+\]</div>
 </div>
-<div class="section" id="test-data">
-<h2>Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">¶</a></h2>
-<p>Explain data that is being used
-Tolerances</p>
+<div class="section" id="description-of-test-data">
+<h2>Description of test data<a class="headerlink" href="#description-of-test-data" title="Permalink to this headline">¶</a></h2>
+<p>For the testing of the variable flip angle methods we used three data sets. For all three types of test data the same tolerances were used: absolute tolerance of 0.05 + relative tolerance of 0.05</p>
+<div class="section" id="digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba">
+<h3>Digital reference object (DRO) provided by the quantitative imaging biomarker alliance (QIBA).<a class="headerlink" href="#digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba" title="Permalink to this headline">¶</a></h3>
+<p>The original DRO consists of multiple groups of 10x10 voxels, each with a different combination of of noise level, S0 and R1.
+One voxel is selected per combination and  voxels with S0/sigma &lt; 1500 are excluded.</p>
+<p>Details: QIBA T1 DRO v3
+Citation: Daniel Barboriak, <a class="reference external" href="https://qidw.rsna.org/#collection/594810551cac0a4ec8ffe574">https://qidw.rsna.org/#collection/594810551cac0a4ec8ffe574</a></p>
+</div>
+<div class="section" id="in-vivo-data-from-a-brain-patient">
+<h3>In-vivo data from a brain patient<a class="headerlink" href="#in-vivo-data-from-a-brain-patient" title="Permalink to this headline">¶</a></h3>
+<p>Each entry corresponds to a voxel following spatial realignment of variable flip angle SPGR images, taken from ROIs drawn in the white matter, deep gray matter and cerebrospinal fluid.
+R1 reference values obtained using in-house Matlab code (<a class="reference external" href="https://github.com/mjt320/HIFI">https://github.com/mjt320/HIFI</a>). These values values are not B1-corrected here, thus may not reflect true R1.</p>
+<p>Citation: Clancy, U., et al., “Rationale and design of a longitudinal study of cerebral small vessel diseases, clinical and imaging outcomes in patients presenting with mild ischaemic stroke: Mild Stroke Study 3.” European Stroke Journal, 2020.</p>
+</div>
+<div class="section" id="in-vivo-data-from-patients-with-prostate-cancer">
+<h3>In-vivo data from patients with prostate cancer<a class="headerlink" href="#in-vivo-data-from-patients-with-prostate-cancer" title="Permalink to this headline">¶</a></h3>
+<p>Each entry corresponds to a randomly selected voxel in the prostate from variable flip angle SPGR images. Data from five prostate cancer patients were used.
+T1 reference values obtained using in-house Matlab code. T1 values are provided with and without B1 correction and both with linear and nonlinear fitting procedures.
+Currently, we only test non-B1-corrected data and use reference values based on non-linear fitting.</p>
+<p>Citation: Klawer et al., “Improved repeatability of dynamic contrast-enhanced MRI using the complex MRI signal to derive arterial input functions: a test-retest study in prostate cancer patients.” Magn Reson Med, 2019.</p>
+</div>
 </div>
 <div class="section" id="import-data">
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="linear-fit-methods">
-<h2>Linear fit methods<a class="headerlink" href="#linear-fit-methods" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dro-data">
-<h3>DRO data<a class="headerlink" href="#dro-data" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare data for bland-altman like plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;../test/results/T1_mapping//&#39;</span>
+<span class="c1"># combine data from CSV files</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_mcgill_t1_VFA_lin.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;ZA_McGill_Can&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_MJT_EdinburghUK_t1_VFA_lin.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;MJT_UoEdinburgh_UK&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_ST_SydneyAus_t1_VFA_lin.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;ST_Sydney_Aus&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_OG_MO_AUMC_ICR_RHM_t1_VFA_2fa.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;OG_MO_AUMC_NL_ICR_UK&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_mcgill_t1_novifast.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;ZA_McGill_Can&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_MJT_EdinburghUK_t1_VFA_nonlin.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;MJT_UoEdinburgh_UK&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_ST_SydneyAus_t1_VFA_nonlin.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;ST_Sydney_Aus&#39;</span><span class="p">),</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_T1mapping_OG_MO_AUMC_ICR_RHM_t1_VFA_nonlin.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">,</span> <span class="n">author</span><span class="o">=</span><span class="s1">&#39;OG_MO_AUMC_NL_ICR_UK&#39;</span><span class="p">)</span>
+    <span class="p">])</span>
+
+<span class="c1"># label data source</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;brain&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;brain&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;prostaat&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;prostate&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;QIBA&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;DRO&#39;</span> 
+
+<span class="n">tolerances</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;r1&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span> <span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span> <span class="mf">0.05</span> <span class="p">}}</span>
+
+<span class="c1"># calculate error between measured and reference R_1 values</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_r1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;r1_measured&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;r1_ref&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="in-vivo-data">
-<h3>In-vivo data<a class="headerlink" href="#in-vivo-data" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dro-data">
+<h2>DRO data<a class="headerlink" href="#dro-data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first plot results of linear fit</span>
+<span class="n">data_linear</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DRO&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)]</span>    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_linear</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span><span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Linear fit&#39;</span><span class="p">)</span>
+<span class="c1"># plot results of nonlinear fit</span>
+<span class="n">data_nonlinear</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DRO&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)]</span> 
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_nonlinear</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span><span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Nonlinear fit&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;DRO data&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
-<div class="section" id="nonlinear-fit-methods">
-<h2>Nonlinear fit methods<a class="headerlink" href="#nonlinear-fit-methods" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dro-results">
-<h3>DRO results<a class="headerlink" href="#dro-results" title="Permalink to this headline">¶</a></h3>
+<div class="cell_output docutils container">
+<img alt="_images/VariableFlipAngle_7_0.png" src="_images/VariableFlipAngle_7_0.png" />
 </div>
-<div class="section" id="in-vivo-results">
-<h3>In-vivo results<a class="headerlink" href="#in-vivo-results" title="Permalink to this headline">¶</a></h3>
+</div>
+<p>In-vivo data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## in-vivo brain data</span>
+<span class="c1"># first plot results of linear fit</span>
+<span class="n">data_linear</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)]</span>    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_linear</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span><span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Linear fit&#39;</span><span class="p">)</span>
+<span class="c1"># plot results of nonlinear fit</span>
+<span class="n">data_nonlinear</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)]</span> 
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_nonlinear</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span><span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Nonlinear fit&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Brain data&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1">## in-vivo prostate data</span>
+<span class="c1"># first plot results of linear fit</span>
+<span class="n">data_linear</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)]</span>    
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">plotBlandAltman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_linear</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span><span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Linear fit&#39;</span><span class="p">)</span>
+<span class="c1"># plot results of nonlinear fit</span>
+<span class="n">data_nonlinear</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)]</span> 
+<span class="n">plotBlandAltman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_nonlinear</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span><span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.15</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Nonlinear fit&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Prostate data&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/VariableFlipAngle_9_0.png" src="_images/VariableFlipAngle_9_0.png" />
+<img alt="_images/VariableFlipAngle_9_1.png" src="_images/VariableFlipAngle_9_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="notes">
