@@ -455,7 +455,7 @@ $<span class="math notranslate nohighlight">\(
     E_1 = e^{\frac{-\mathrm{TR}}{T_1}}
 \]</div>
 <p>and <span class="math notranslate nohighlight">\(S(\theta)\)</span> being the signal intensity at a certain flip angle <span class="math notranslate nohighlight">\(\theta\)</span>,  <span class="math notranslate nohighlight">\(\rho_0\)</span> the spin density including system gain contributions, and TR the repetition time.</p>
-<p>For fast calculation of T1 the problem is often linearized. If <span class="math notranslate nohighlight">\(\frac{S(\theta)}{sin(\theta)}\)</span> is a linear function of <span class="math notranslate nohighlight">\(\frac{S(\theta)}{tan(\theta)}\)</span>, E_1, the slope of the line, can be calculated using linear regression.  This is what is done typically in the linear fit implementations.</p>
+<p>For fast calculation of T1 the problem is often linearized. If <span class="math notranslate nohighlight">\(\frac{S(\theta)}{sin(\theta)}\)</span> is a linear function of <span class="math notranslate nohighlight">\(\frac{S(\theta)}{tan(\theta)}\)</span>, <span class="math notranslate nohighlight">\(E_1\)</span>, the slope of the line, can be calculated using linear regression.  This is what is done typically in the linear fit implementations.</p>
 <div class="math notranslate nohighlight">
 \[
     \frac{S(\theta)}{sin(\theta)} = S_0(1-E_1) + E_1 \cdot \frac{S(\theta)}{tan(\theta)}
