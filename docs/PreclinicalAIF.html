@@ -199,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="DSC.html">
-   DSC test results
+   DSC functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -443,6 +443,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">csv</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 </pre></div>
 </div>
 </div>
@@ -465,14 +467,34 @@ Tolerances: absolute + relative = 0.0001 mM + 0.01 and 0.1 mM + 0.1 for the data
 </div>
 <div class="section" id="import-data">
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h2>
+<p>A JSON named <code class="docutils literal notranslate"><span class="pre">results-meta.json</span></code> is created to isolate the meta information. The following script can read this JSON and construct the corresponding data frame. The JSON contains a list of entries. Each entry contains the <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code>, <code class="docutils literal notranslate"><span class="pre">method</span></code> and <code class="docutils literal notranslate"><span class="pre">author</span></code>. To incorporate future results, one can just update this JSON file and re-run the following scripts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_dir</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;../test/results/PopulationAIF_DCE//&#39;</span>
-<span class="c1"># combine data from CSV files</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
-    <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span> <span class="o">+</span> <span class="s1">&#39;TestResults_PopAIF_preclinical_AIF_ST_SydneyAus.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="s1">&#39;ST_Sydney_Aus&#39;</span><span class="p">)])</span>
-
-<span class="c1"># label data source</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the meta data</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../test/results/results-meta.json&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loop over each entry and collect the dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;PopulationAIF&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">entry</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;preclinical&#39;</span><span class="p">)</span> <span class="p">:</span>
+        <span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">author</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="n">df_entry</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span><span class="p">))</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_entry</span><span class="p">)</span>
+    
+<span class="c1"># Concat all entries</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># label data source</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;original&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;original&#39;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;acq_time_&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;acq_time&#39;</span>
@@ -506,8 +528,6 @@ Tolerances: absolute + relative = 0.0001 mM + 0.01 and 0.1 mM + 0.1 for the data
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">author_list</span><span class="p">[</span><span class="n">current_author</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mM)&#39;</span><span class="p">)</span>
-    
-
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.04</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -516,7 +536,7 @@ Tolerances: absolute + relative = 0.0001 mM + 0.01 and 0.1 mM + 0.1 for the data
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/PreclinicalAIF_8_1.png" src="_images/PreclinicalAIF_8_1.png" />
+<img alt="_images/PreclinicalAIF_11_1.png" src="_images/PreclinicalAIF_11_1.png" />
 </div>
 </div>
 </div>
@@ -587,7 +607,7 @@ This test data was added to check whether the contributions can work with acquis
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/PreclinicalAIF_10_1.png" src="_images/PreclinicalAIF_10_1.png" />
+<img alt="_images/PreclinicalAIF_13_1.png" src="_images/PreclinicalAIF_13_1.png" />
 </div>
 </div>
 </div>
@@ -657,14 +677,13 @@ This test data was added to check whether the contributions can work with tempor
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/PreclinicalAIF_12_1.png" src="_images/PreclinicalAIF_12_1.png" />
+<img alt="_images/PreclinicalAIF_15_1.png" src="_images/PreclinicalAIF_15_1.png" />
 </div>
 </div>
 </div>
 <div class="section" id="variations-in-bolus-arrival-time">
 <h3>Variations in bolus arrival time<a class="headerlink" href="#variations-in-bolus-arrival-time" title="Permalink to this headline">¶</a></h3>
-<p>This test data was added to check how contributions deal with a difference in bolus arrival time.
-Notes: There are slight differences for delays that are not exact multiplications of the temporal resolution. The original AIF is shifted to the nearest integer, instead of re-calculated.</p>
+<p>This test data was added to check how contributions deal with a difference in bolus arrival time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_delay</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;delay&#39;</span><span class="p">)]</span>
@@ -731,14 +750,7 @@ Notes: There are slight differences for delays that are not exact multiplication
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/PreclinicalAIF_14_1.png" src="_images/PreclinicalAIF_14_1.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># prepare data for bland-altman like plots</span>
-</pre></div>
-</div>
+<img alt="_images/PreclinicalAIF_17_1.png" src="_images/PreclinicalAIF_17_1.png" />
 </div>
 </div>
 </div>
