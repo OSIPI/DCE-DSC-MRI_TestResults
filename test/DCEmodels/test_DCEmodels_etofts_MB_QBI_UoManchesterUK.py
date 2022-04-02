@@ -17,7 +17,7 @@ def setup_module(module):
     global filename_prefix # we want to change the global variable
     os.makedirs('./test/results/DCEmodels', exist_ok=True)
     filename_prefix = 'DCEmodels/TestResults_models'
-    log_init(filename_prefix, '_MB_QBI_UoManchester_extended_tofts_kety_model', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'vp_ref', 'Ktrans_meas', 've_meas', 'vp_meas'])
+    log_init(filename_prefix, '_MB_QBI_UoManchester_etofts', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'vp_ref', 'Ktrans_meas', 've_meas', 'vp_meas'])
 
 
 # Use the test data to generate a parametrize decorator. This causes the following
@@ -26,10 +26,11 @@ def setup_module(module):
 def test_MB_QBI_UoManchester_extended_tofts_kety_model(label, t_array, C_array, ca_array, ta_array, ve_ref, vp_ref,
                                                        Ktrans_ref, arterial_delay_ref, a_tol_ve, r_tol_ve, a_tol_vp,
                                                        r_tol_vp, a_tol_Ktrans, r_tol_Ktrans, a_tol_delay, r_tol_delay):
-    # NOTES: delay fitting not implemented
+    # NOTES:
+    # Artery-capillary delay fitting not implemented
 
     # prepare input data
-    t_array = t_array / 60  # - in seconds
+    t_array = t_array / 60  # convert to minutes
     aif = dce_aif.Aif(times=t_array, base_aif=ca_array, aif_type=dce_aif.AifType(3))
 
     # run code
@@ -37,7 +38,8 @@ def test_MB_QBI_UoManchester_extended_tofts_kety_model(label, t_array, C_array, 
     Ktrans_meas, ve_meas, vp_meas = tofts_model.solve_LLS(C_array, aif, 0)
     exc_time = 1e6 * (perf_counter() - tic)  # measure execution time
 
-    log_results(filename_prefix, '_MB_QBI_UoManchester_extended_tofts_kety_model', [[label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, vp_ref, Ktrans_meas, ve_meas, vp_meas]])
+    # log results
+    log_results(filename_prefix, '_MB_QBI_UoManchester_etofts', [[label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, vp_ref, Ktrans_meas, ve_meas, vp_meas]])
 
     # run test
     np.testing.assert_allclose([ve_meas], [ve_ref], rtol=r_tol_ve, atol=a_tol_ve)

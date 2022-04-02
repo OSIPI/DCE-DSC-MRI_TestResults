@@ -17,7 +17,7 @@ def setup_module(module):
     global filename_prefix # we want to change the global variable
     os.makedirs('./test/results/DCEmodels', exist_ok=True)
     filename_prefix = 'DCEmodels/TestResults_models'
-    log_init(filename_prefix, '_ST_USydAus_tofts_model', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'Ktrans_meas', 've_meas'])
+    log_init(filename_prefix, '_ST_USydAus_tofts', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'Ktrans_meas', 've_meas'])
 
 
 # Use the test data to generate a parametrize decorator. This causes the following
@@ -25,12 +25,14 @@ def setup_module(module):
 @osipi_parametrize(arg_names, test_data, xf_labels=[])
 def testST_USydAUS_tofts_model(label, t_array, C_array, ca_array, ta_array, ve_ref, Ktrans_ref, arterial_delay_ref,
                                a_tol_ve, r_tol_ve, a_tol_Ktrans, r_tol_Ktrans, a_tol_delay, r_tol_delay):
-    # NOTES: delay fitting not implemented
+    # NOTES:
+    # Fitting not implemented
+    # Artery-capillary delay fitting not implemented
 
     # prepare input data
     ta_array = ta_array / 60
     data = np.column_stack((ta_array, ca_array))
-    X0 = (0.2, 0.6)
+    X0 = (0.2, 0.6)  # ve, KTrans
     bounds = ((0.0, 0.0), (1, 5.0))
 
     # run code
@@ -40,7 +42,7 @@ def testST_USydAUS_tofts_model(label, t_array, C_array, ca_array, ta_array, ve_r
     exc_time = 1e6 * (perf_counter() - tic)  # measure execution time
 
     # log results
-    log_results(filename_prefix, '_ST_SydAus_tofts_model', [
+    log_results(filename_prefix, '_ST_USydAus_tofts', [
         [label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, Ktrans_meas, ve_meas]])
 
     # run test

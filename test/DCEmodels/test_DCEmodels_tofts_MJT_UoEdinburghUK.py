@@ -16,7 +16,7 @@ def setup_module(module):
     global filename_prefix # we want to change the global variable
     os.makedirs('./test/results/DCEmodels', exist_ok=True)
     filename_prefix = 'DCEmodels/TestResults_models'
-    log_init(filename_prefix, '_MJT_UoEdinburghUK_tofts_model', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'Ktrans_meas', 've_meas'])
+    log_init(filename_prefix, '_MJT_UoEdinburghUK_tofts', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'Ktrans_meas', 've_meas'])
 
 
 # Use the test data to generate a parametrize decorator. This causes the following
@@ -28,7 +28,6 @@ def test_MJT_UoEdinburghUK_tofts_model(label, t_array, C_array, ca_array, ta_arr
     # NOTES:
 
     # prepare input data - create aif object
-    t_array = t_array  # /60  - in seconds
     aif = aifs.patient_specific(t_array, ca_array)
     pk_model = pk_models.tofts(t_array, aif)
 
@@ -40,7 +39,7 @@ def test_MJT_UoEdinburghUK_tofts_model(label, t_array, C_array, ca_array, ta_arr
     exc_time = 1e6 * (perf_counter() - tic)  # measure execution time
 
     # log results
-    log_results(filename_prefix, '_MJT_UoEdinburgh_tofts_model', [
+    log_results(filename_prefix, '_MJT_UoEdinburghUK_tofts', [
         [label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, Ktrans_meas, ve_meas]])
 
     # run test

@@ -18,7 +18,7 @@ def setup_module(module):
     global filename_prefix # we want to change the global variable
     os.makedirs('./test/results/DCEmodels', exist_ok=True)
     filename_prefix = 'DCEmodels/TestResults_models'
-    log_init(filename_prefix, '_ST_USydAus_extended_tofts_kety_model', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'vp_ref', 'Ktrans_meas', 've_meas', 'vp_meas'])
+    log_init(filename_prefix, '_ST_USydAus_etofts', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'vp_ref', 'Ktrans_meas', 've_meas', 'vp_meas'])
 
 
 # Use the test data to generate a parametrize decorator. This causes the following
@@ -27,13 +27,15 @@ def setup_module(module):
 def testST_USydAUS_extended_tofts_kety_model(label, t_array, C_array, ca_array, ta_array, ve_ref, vp_ref, Ktrans_ref,
                                              arterial_delay_ref, a_tol_ve, r_tol_ve, a_tol_vp, r_tol_vp, a_tol_Ktrans,
                                              r_tol_Ktrans, a_tol_delay, r_tol_delay):
-    # NOTES: delay fitting not implemented
+    # NOTES:
+    # Delay not implemented
+    # Artery-capillary delay fitting not implemented
 
     # prepare input data
-    ta_array = ta_array / 60
+    ta_array = ta_array / 60  # convert to minutes so that KTrans is in /min
     data = np.column_stack((ta_array, ca_array))
-    X0 = (0.6, 0.2, 0.02)
-    bounds = ((0.0, 0.0, 0.0), (5.0, 1, 0.7))
+    X0 = (0.01, 0.2, 0.6)  # vp, ve, KTrans
+    bounds = ((0.0, 0.0, 0.0), (1, 1, 5))
 
     # run code
     tic = perf_counter()
@@ -42,7 +44,7 @@ def testST_USydAUS_extended_tofts_kety_model(label, t_array, C_array, ca_array, 
     exc_time = 1e6 * (perf_counter() - tic)  # measure execution time
 
     # log results
-    log_results(filename_prefix, '_ST_USydAus_extended_tofts_kety_model', [
+    log_results(filename_prefix, '_ST_USydAus_etofts', [
         [label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, vp_ref, Ktrans_meas, ve_meas, vp_meas]])
 
     # run test

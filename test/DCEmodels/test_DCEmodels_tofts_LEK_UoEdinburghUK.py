@@ -18,7 +18,7 @@ def setup_module(module):
     global filename_prefix # we want to change the global variable
     os.makedirs('./test/results/DCEmodels', exist_ok=True)
     filename_prefix = 'DCEmodels/TestResults_models'
-    log_init(filename_prefix, '_LEK_UoEdinburghUK_tofts_model', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'delay_ref', 'Ktrans_meas', 've_meas', 'delay_meas'])
+    log_init(filename_prefix, '_LEK_UoEdinburghUK_tofts', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'delay_ref', 'Ktrans_meas', 've_meas', 'delay_meas'])
 
 
 # Use the test data to generate a parametrize decorator. This causes the following test to be run for every test case
@@ -28,11 +28,12 @@ def test_LEK_UoEdinburghUK_tofts_model(label, t_array, C_array, ca_array, ta_arr
                                        arterial_delay_ref, a_tol_ve, r_tol_ve, a_tol_Ktrans, r_tol_Ktrans, a_tol_delay,
                                        r_tol_delay):
     # NOTES:
+    # Fitting not implemented
 
     # prepare input data
-    t_array = t_array / 60
-    X0 = (0.2, 0.6, 0)
-    bounds = ((0.0, 0.0, 0), (1, 5.0, 1))
+    t_array = t_array / 60  # convert to minutes so that KTrans is in /min
+    X0 = (0.6, 0.2, 0)  # KTrans, ve, delay
+    bounds = ((0.0, 0.0, -10/60), (5, 1, 10/60))
 
     # run code
     tic = perf_counter()
@@ -42,7 +43,7 @@ def test_LEK_UoEdinburghUK_tofts_model(label, t_array, C_array, ca_array, ta_arr
     exc_time = 1e6 * (perf_counter() - tic)  # measure execution time
 
     # log results
-    log_results(filename_prefix, '_LEK_UoEdinburghUK_tofts_model', [
+    log_results(filename_prefix, '_LEK_UoEdinburghUK_tofts', [
         [label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, arterial_delay_ref, Ktrans_meas, ve_meas, arterial_delay_meas]])
 
     # run test

@@ -18,7 +18,7 @@ def setup_module(module):
     global filename_prefix # we want to change the global variable
     os.makedirs('./test/results/DCEmodels', exist_ok=True)
     filename_prefix = 'DCEmodels/TestResults_models'
-    log_init(filename_prefix, '_MJT_UoEdinburghUK_extended_tofts_kety_model', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'vp_ref', 'Ktrans_meas', 've_meas', 'vp_meas'])
+    log_init(filename_prefix, '_MJT_UoEdinburghUK_etofts', ['label', 'time (us)', 'Ktrans_ref', 've_ref', 'vp_ref', 'Ktrans_meas', 've_meas', 'vp_meas'])
 
 
 # Use the test data to generate a parametrize decorator. This causes the following
@@ -30,21 +30,22 @@ def test_MJT_UoEdinburghUK_extended_tofts_kety_model(label, t_array, C_array, ca
     # NOTES:
 
     # prepare input data - create aif object
-    t_array = t_array  # /60  - in seconds
+    t_array = t_array  # in seconds
     aif = aifs.patient_specific(t_array, ca_array)
     pk_model = pk_models.extended_tofts(t_array, aif)
-    pk_pars_0 = [{'vp': 0.6, 'ps': 0.02, 've': 0.2}]
 
     # run code
     tic = perf_counter()
-    pk_pars, C_t_fit = dce_fit.conc_to_pkp(C_array, pk_model, pk_pars_0)
+
+    # run test
+    pk_pars, C_t_fit = dce_fit.conc_to_pkp(C_array, pk_model)
     Ktrans_meas = pk_pars['ps']
     ve_meas = pk_pars['ve']
     vp_meas = pk_pars['vp']
     exc_time = 1e6 * (perf_counter() - tic)  # measure execution time
 
     # log results
-    log_results(filename_prefix, '_MJT_UoEdinburghUK_extended_tofts_kety_model', [[label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, vp_ref, Ktrans_meas, ve_meas, vp_meas]])
+    log_results(filename_prefix, '_MJT_UoEdinburghUK_etofts', [[label, f"{exc_time:.0f}", Ktrans_ref, ve_ref, vp_ref, Ktrans_meas, ve_meas, vp_meas]])
 
     # run test
     np.testing.assert_allclose([ve_meas], [ve_ref], rtol=r_tol_ve, atol=a_tol_ve)
