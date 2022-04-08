@@ -103,7 +103,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="contributors.html">
-   Contributions
+   Overview of code collection
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -205,8 +205,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="guidelines.html">
-   Want to contribute?
+  <a class="reference internal" href="Acknowledgements.html">
+   Contributors
   </a>
  </li>
 </ul>
@@ -421,15 +421,17 @@ const thebe_selector_output = ".output, .cell_output"
 \Xi \approx \frac{(E_1 - E_{1,0})(\mathrm{cos}(\alpha)-1)}{(E_{1,0} - 1)(E_1 \mathrm{cos}(\alpha) -1)}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(E_{1,0} = e^{-\mathrm{TR}R_{1,0}}\)</span> and <span class="math notranslate nohighlight">\(E_{1} = e^{-\mathrm{TR}R_{1}}\)</span>, <span class="math notranslate nohighlight">\(R_1 = 1/T_1\)</span></p>
-<p>In this way R_1 can be solved to obtain a nonlinear approximation as (eq 6 in Schabel et al):
-$<span class="math notranslate nohighlight">\(
+<p>In this way R_1 can be solved to obtain a nonlinear approximation as (eq 6 in Schabel et al):</p>
+<div class="math notranslate nohighlight">
+\[
 R_1^{nl} \approx - \frac{1}{\mathrm{TR}} \cdot \mathrm{log}[\frac{\Xi(E_{1,0} - 1) + E_{1,0}(1- \mathrm{cos}(\alpha))}{1+\mathrm{cos}(\alpha)(\Xi(E_{1,0} - 1)-1)}]
-\)</span><span class="math notranslate nohighlight">\(
-This leads to a nonlinear approximation of the the concentration \)</span>C<span class="math notranslate nohighlight">\( (eq 7 in Schabel et al):
-\)</span><span class="math notranslate nohighlight">\(
+\]</div>
+<p>This leads to a nonlinear approximation of the the concentration <span class="math notranslate nohighlight">\(C\)</span> (eq 7 in Schabel et al):</p>
+<div class="math notranslate nohighlight">
+\[
 C^{nl} \approx \frac{1}{r_1}(R_1^{nl} - R_{1,0})
-\)</span><span class="math notranslate nohighlight">\(
-with \)</span>r_1$ is the relaxivity of the contrast agent being used.</p>
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(r_1\)</span> is the relaxivity of the contrast agent being used.</p>
 <p>An often used linear approximation (eq (8) in Schabel et al.):
 $<span class="math notranslate nohighlight">\(
 C^l \approx \frac{1}{r_1}(R_{1,0}\Xi)
@@ -446,7 +448,6 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 </div>
 <div class="section" id="import-data">
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h2>
-<p>A JSON named <code class="docutils literal notranslate"><span class="pre">results-meta.json</span></code> is created to isolate the meta information. The following script can read this JSON and construct the corresponding data frame. The JSON contains a list of entries. Each entry contains the <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code>, <code class="docutils literal notranslate"><span class="pre">method</span></code> and <code class="docutils literal notranslate"><span class="pre">author</span></code>. To incorporate future results, one can just update this JSON file and re-run the following scripts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the meta data</span>
@@ -525,7 +526,7 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/SItoC_11_1.png" src="_images/SItoC_11_1.png" />
+<img alt="_images/SItoC_10_1.png" src="_images/SItoC_10_1.png" />
 </div>
 </div>
 <p>Plot bland altman figure of error between output concentration values and reference values vs the reference values. All datapoints are combined into one figure in this case</p>
@@ -548,7 +549,7 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="_images/SItoC_13_1.png" src="_images/SItoC_13_1.png" />
+<img alt="_images/SItoC_12_1.png" src="_images/SItoC_12_1.png" />
 </div>
 </div>
 <p>Calculate bias and limits of agreement for all contributions wrt the reference values.
