@@ -542,24 +542,6 @@ Currently, we only test non-B1-corrected data and use reference values based on 
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_r1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;r1_measured&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;r1_ref&#39;</span><span class="p">]</span>
 <span class="c1"># add ratio of measured and reference R_1 values</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;perc_error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">error_r1</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">r1_ref</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span> <span class="c1"># add percentage error column</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">perc_error</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      0.962027
-1      1.185573
-2      1.502314
-3      1.654948
-4      0.543545
-         ...   
-166    0.000006
-167    0.000002
-168    0.000019
-169    0.000010
-170    0.000024
-Name: perc_error, Length: 1368, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -779,7 +761,6 @@ ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
 </div>
 </div>
 </div>
-<p>Perform bland-altman statistics, for details see DRO data</p>
 </div>
 <div class="section" id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>

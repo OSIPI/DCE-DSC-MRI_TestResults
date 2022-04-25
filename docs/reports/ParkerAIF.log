@@ -17,53 +17,53 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-data_acqtime = df[(df['source']=='acq_time')]
-acq_list = data_acqtime.label.unique()
-no_acq = len(acq_list)
+data_delay = df[(df['source']=='delay')]
+delay_list = data_delay.label.unique()
+no_delay = len(delay_list)
 
-fig, ax = plt.subplots(no_acq, no_authors, sharex='col', sharey='row', figsize=(12,9))
+fig, ax = plt.subplots(no_delay, no_authors, sharex='col', sharey='row', figsize=(12,20))
 
-for current_acq in range(no_acq):
+for current_delay in range(no_delay):
     for current_author in range(no_authors):
-        subset_data = data_acqtime[(data_acqtime['author'] == author_list[current_author]) & (data_acqtime['label'] == acq_list[current_acq])]
-        ax[current_acq,current_author].plot(subset_data.time_ref, subset_data.cb_measured, color='black',label ="AIF")
-        ax[current_acq,current_author].plot(subset_data.time_ref, subset_data.aif_ref, color='darkgrey', linestyle='dashed', label='ref')
+        subset_data = data_delay[(data_delay['author'] == author_list[current_author]) & (data_delay['label'] == delay_list[current_delay])]
+        ax[current_delay,current_author].plot(subset_data.time_ref, subset_data.cb_measured, color='black',label ="AIF")
+        ax[current_delay,current_author].plot(subset_data.time_ref, subset_data.aif_ref, color='darkgrey', linestyle='dashed', label='ref')
 
-        if current_acq == 0:
-            ax[current_acq,current_author].set_title(author_list[current_author])
+        if current_delay == 0:
+            ax[current_delay,current_author].set_title(author_list[current_author], fontsize=14)
         if current_author == 0:
-            ax[current_acq,current_author].set_ylabel('C (mM)', fontsize=14)
-        if current_acq == no_acq-1:
-            ax[current_acq,current_author].set_xlabel('time (s)', fontsize=14)
-        ax[current_acq,current_author].tick_params(axis='x', labelsize=12)
-        ax[current_acq,current_author].tick_params(axis='y', labelsize=12)
+            ax[current_delay,current_author].set_ylabel('C (mM)', fontsize=14)
+        if current_delay == no_res-1:
+            ax[current_delay,current_author].set_xlabel('time (s)', fontsize=14)
+        
+        ax[current_delay,current_author].set_xlim([0, 50])
+        
+        ax[current_res,current_author].tick_params(axis='x', labelsize=12)
+        ax[current_res,current_author].tick_params(axis='y', labelsize=12)
 
-            
+ax[no_delay-1,no_authors-1].legend(fontsize=14)
 
-ax[no_acq-1,no_authors-1].legend(fontsize=14)
-
-# add extra labels for rows (example taken from: https://microeducate.tech/row-and-column-headers-in-matplotlibs-subplots/)
+# add extra labels for rows
 pad = 5
-for a, row in zip(ax[:,0], acq_list):
+for a, row in zip(ax[:,0], delay_list):
     a.annotate(row, xy=(0, 0.5), xytext=(-a.yaxis.labelpad - pad, 0),
                 xycoords=a.yaxis.label, textcoords='offset points',
                 size='large', ha='right', va='center', rotation=90, fontsize=14)
 
 fig.tight_layout()
 fig.subplots_adjust(left=0.15, top=0.95)
-
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mTypeError[0m                                 Traceback (most recent call last)
-Input [0;32mIn [6][0m, in [0;36m<cell line: 28>[0;34m()[0m
-[1;32m     27[0m pad [38;5;241m=[39m [38;5;241m5[39m
-[1;32m     28[0m [38;5;28;01mfor[39;00m a, row [38;5;129;01min[39;00m [38;5;28mzip[39m(ax[:,[38;5;241m0[39m], acq_list):
-[0;32m---> 29[0m     [43ma[49m[38;5;241;43m.[39;49m[43mannotate[49m[43m([49m[43mrow[49m[43m,[49m[43m [49m[43mxy[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[38;5;241;43m0.5[39;49m[43m)[49m[43m,[49m[43m [49m[43mxytext[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m-[39;49m[43ma[49m[38;5;241;43m.[39;49m[43myaxis[49m[38;5;241;43m.[39;49m[43mlabelpad[49m[43m [49m[38;5;241;43m-[39;49m[43m [49m[43mpad[49m[43m,[49m[43m [49m[38;5;241;43m0[39;49m[43m)[49m[43m,[49m
-[1;32m     30[0m [43m                [49m[43mxycoords[49m[38;5;241;43m=[39;49m[43ma[49m[38;5;241;43m.[39;49m[43myaxis[49m[38;5;241;43m.[39;49m[43mlabel[49m[43m,[49m[43m [49m[43mtextcoords[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43moffset points[39;49m[38;5;124;43m'[39;49m[43m,[49m
-[1;32m     31[0m [43m                [49m[43msize[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mlarge[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mha[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mright[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mva[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mcenter[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mrotation[49m[38;5;241;43m=[39;49m[38;5;241;43m90[39;49m[43m,[49m[43m [49m[43mfontsize[49m[38;5;241;43m=[39;49m[38;5;241;43m14[39;49m[43m)[49m
-[1;32m     33[0m fig[38;5;241m.[39mtight_layout()
-[1;32m     34[0m fig[38;5;241m.[39msubplots_adjust(left[38;5;241m=[39m[38;5;241m0.15[39m, top[38;5;241m=[39m[38;5;241m0.95[39m)
+Input [0;32mIn [8][0m, in [0;36m<cell line: 29>[0;34m()[0m
+[1;32m     28[0m pad [38;5;241m=[39m [38;5;241m5[39m
+[1;32m     29[0m [38;5;28;01mfor[39;00m a, row [38;5;129;01min[39;00m [38;5;28mzip[39m(ax[:,[38;5;241m0[39m], delay_list):
+[0;32m---> 30[0m     [43ma[49m[38;5;241;43m.[39;49m[43mannotate[49m[43m([49m[43mrow[49m[43m,[49m[43m [49m[43mxy[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[38;5;241;43m0.5[39;49m[43m)[49m[43m,[49m[43m [49m[43mxytext[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m-[39;49m[43ma[49m[38;5;241;43m.[39;49m[43myaxis[49m[38;5;241;43m.[39;49m[43mlabelpad[49m[43m [49m[38;5;241;43m-[39;49m[43m [49m[43mpad[49m[43m,[49m[43m [49m[38;5;241;43m0[39;49m[43m)[49m[43m,[49m
+[1;32m     31[0m [43m                [49m[43mxycoords[49m[38;5;241;43m=[39;49m[43ma[49m[38;5;241;43m.[39;49m[43myaxis[49m[38;5;241;43m.[39;49m[43mlabel[49m[43m,[49m[43m [49m[43mtextcoords[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43moffset points[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m     32[0m [43m                [49m[43msize[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mlarge[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mha[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mright[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mva[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mcenter[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mrotation[49m[38;5;241;43m=[39;49m[38;5;241;43m90[39;49m[43m,[49m[43m [49m[43mfontsize[49m[38;5;241;43m=[39;49m[38;5;241;43m14[39;49m[43m)[49m
+[1;32m     34[0m fig[38;5;241m.[39mtight_layout()
+[1;32m     35[0m fig[38;5;241m.[39msubplots_adjust(left[38;5;241m=[39m[38;5;241m0.15[39m, top[38;5;241m=[39m[38;5;241m0.95[39m)
 
 File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/matplotlib/axes/_axes.py:666[0m, in [0;36mAxes.annotate[0;34m(self, text, xy, *args, **kwargs)[0m
 [1;32m    664[0m [38;5;129m@docstring[39m[38;5;241m.[39mdedent_interpd
