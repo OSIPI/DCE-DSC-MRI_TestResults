@@ -452,7 +452,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <div class="section" id="visualize-test-data">
 <h3>Visualize test data<a class="headerlink" href="#visualize-test-data" title="Permalink to this headline">¶</a></h3>
-<p>showing the data from high SNR from the original DRO and lowest SNR of 20</p>
+<p>To get an impression of the test data, the concentration time curves of the test data are plotted below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot test data</span>
@@ -462,7 +462,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="n">no_voxels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">currentvoxel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_voxels</span><span class="p">):</span>
     <span class="n">labelname</span> <span class="o">=</span> <span class="s1">&#39;case_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">currentvoxel</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -473,32 +472,18 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labelname</span><span class="p">)</span>
     
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;C (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (ms)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>   
-<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>   
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">);</span>
 
     
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-1.,  0.,  1.,  2.,  3.,  4.,  5.,  6.]),
- [Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;),
-  Text(0, 0, &#39;&#39;)])
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/PatlakModel_5_2.png" src="_images/PatlakModel_5_2.png" />
+<img alt="_images/PatlakModel_5_0.png" src="_images/PatlakModel_5_0.png" />
 </div>
 </div>
 </div>
@@ -549,8 +534,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ps&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0075</span><span class="p">,</span><span class="mf">0.0075</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$PS_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $PS$ ($min^{-1}$)&#39;</span><span class="p">)</span>
 
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.004</span><span class="p">,</span><span class="mf">0.004</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
@@ -560,18 +544,12 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Hide the legend for the left subplot</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="c1"># Set the position of the legend</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f62fcb38eb0&gt;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/PatlakModel_11_2.png" src="_images/PatlakModel_11_2.png" />
+<img alt="_images/PatlakModel_11_0.png" src="_images/PatlakModel_11_0.png" />
 </div>
 </div>
 <p>Bias results estimated PS values combined for all voxels</p>
@@ -583,15 +561,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias  std_error  LoA lower  LoA upper
-author                                                       
-LEK_UoEdinburgh_UK  0.000100   0.000378  -0.000641   0.000840
-MJT_UoEdinburgh_UK  0.000031   0.000411  -0.000774   0.000837
-ST_USyd_Aus         0.000100   0.000378  -0.000641   0.000840
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LEK_UoEdinburgh_UK  0.000100  0.000378  -0.000641   0.000840
+MJT_UoEdinburgh_UK  0.000031  0.000411  -0.000774   0.000837
+ST_USyd_Aus         0.000100  0.000378  -0.000641   0.000840
 </pre></div>
 </div>
 </div>
 </div>
+<p>Bias results estimated <span class="math notranslate nohighlight">\(v_p\)</span> values combined for all voxels</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_vp&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
@@ -600,11 +579,11 @@ ST_USyd_Aus         0.000100   0.000378  -0.000641   0.000840
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias  std_error  LoA lower  LoA upper
-author                                                       
-LEK_UoEdinburgh_UK -0.000129   0.000723  -0.001547   0.001289
-MJT_UoEdinburgh_UK -0.000037   0.000777  -0.001560   0.001486
-ST_USyd_Aus        -0.000407   0.000855  -0.002082   0.001268
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LEK_UoEdinburgh_UK -0.000129  0.000723  -0.001547   0.001289
+MJT_UoEdinburgh_UK -0.000037  0.000777  -0.001560   0.001486
+ST_USyd_Aus        -0.000407  0.000855  -0.002082   0.001268
 </pre></div>
 </div>
 </div>

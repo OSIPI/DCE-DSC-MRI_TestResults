@@ -1,0 +1,102 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+data_acqtime = df[(df['source']=='acq_time')]
+acq_list = data_acqtime.label.unique()
+no_acq = len(acq_list)
+
+fig, ax = plt.subplots(no_acq, no_authors, sharex='col', sharey='row', figsize=(12,9))
+
+for current_acq in range(no_acq):
+    for current_author in range(no_authors):
+        subset_data = data_acqtime[(data_acqtime['author'] == author_list[current_author]) & (data_acqtime['label'] == acq_list[current_acq])]
+        ax[current_acq,current_author].plot(subset_data.time_ref, subset_data.cb_measured, color='black',label ="AIF")
+        ax[current_acq,current_author].plot(subset_data.time_ref, subset_data.aif_ref, color='darkgrey', linestyle='dashed', label='ref')
+
+        if current_acq == 0:
+            ax[current_acq,current_author].set_title(author_list[current_author])
+        if current_author == 0:
+            ax[current_acq,current_author].set_ylabel('C (mM)', fontsize=14)
+        if current_acq == no_acq-1:
+            ax[current_acq,current_author].set_xlabel('time (s)', fontsize=14)
+        ax[current_acq,current_author].tick_params(axis='x', labelsize=12)
+        ax[current_acq,current_author].tick_params(axis='y', labelsize=12)
+
+            
+
+ax[no_acq-1,no_authors-1].legend(fontsize=14)
+
+# add extra labels for rows (example taken from: https://microeducate.tech/row-and-column-headers-in-matplotlibs-subplots/)
+pad = 5
+for a, row in zip(ax[:,0], acq_list):
+    a.annotate(row, xy=(0, 0.5), xytext=(-a.yaxis.labelpad - pad, 0),
+                xycoords=a.yaxis.label, textcoords='offset points',
+                size='large', ha='right', va='center', rotation=90, fontsize=14)
+
+fig.tight_layout()
+fig.subplots_adjust(left=0.15, top=0.95)
+
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Input [0;32mIn [6][0m, in [0;36m<cell line: 28>[0;34m()[0m
+[1;32m     27[0m pad [38;5;241m=[39m [38;5;241m5[39m
+[1;32m     28[0m [38;5;28;01mfor[39;00m a, row [38;5;129;01min[39;00m [38;5;28mzip[39m(ax[:,[38;5;241m0[39m], acq_list):
+[0;32m---> 29[0m     [43ma[49m[38;5;241;43m.[39;49m[43mannotate[49m[43m([49m[43mrow[49m[43m,[49m[43m [49m[43mxy[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m0[39;49m[43m,[49m[43m [49m[38;5;241;43m0.5[39;49m[43m)[49m[43m,[49m[43m [49m[43mxytext[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m-[39;49m[43ma[49m[38;5;241;43m.[39;49m[43myaxis[49m[38;5;241;43m.[39;49m[43mlabelpad[49m[43m [49m[38;5;241;43m-[39;49m[43m [49m[43mpad[49m[43m,[49m[43m [49m[38;5;241;43m0[39;49m[43m)[49m[43m,[49m
+[1;32m     30[0m [43m                [49m[43mxycoords[49m[38;5;241;43m=[39;49m[43ma[49m[38;5;241;43m.[39;49m[43myaxis[49m[38;5;241;43m.[39;49m[43mlabel[49m[43m,[49m[43m [49m[43mtextcoords[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43moffset points[39;49m[38;5;124;43m'[39;49m[43m,[49m
+[1;32m     31[0m [43m                [49m[43msize[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mlarge[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mha[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mright[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mva[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mcenter[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mrotation[49m[38;5;241;43m=[39;49m[38;5;241;43m90[39;49m[43m,[49m[43m [49m[43mfontsize[49m[38;5;241;43m=[39;49m[38;5;241;43m14[39;49m[43m)[49m
+[1;32m     33[0m fig[38;5;241m.[39mtight_layout()
+[1;32m     34[0m fig[38;5;241m.[39msubplots_adjust(left[38;5;241m=[39m[38;5;241m0.15[39m, top[38;5;241m=[39m[38;5;241m0.95[39m)
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/matplotlib/axes/_axes.py:666[0m, in [0;36mAxes.annotate[0;34m(self, text, xy, *args, **kwargs)[0m
+[1;32m    664[0m [38;5;129m@docstring[39m[38;5;241m.[39mdedent_interpd
+[1;32m    665[0m [38;5;28;01mdef[39;00m [38;5;21mannotate[39m([38;5;28mself[39m, text, xy, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[0;32m--> 666[0m     a [38;5;241m=[39m [43mmtext[49m[38;5;241;43m.[39;49m[43mAnnotation[49m[43m([49m[43mtext[49m[43m,[49m[43m [49m[43mxy[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    667[0m     a[38;5;241m.[39mset_transform(mtransforms[38;5;241m.[39mIdentityTransform())
+[1;32m    668[0m     [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124mclip_on[39m[38;5;124m'[39m [38;5;129;01min[39;00m kwargs:
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/matplotlib/text.py:1825[0m, in [0;36mAnnotation.__init__[0;34m(self, text, xy, xytext, xycoords, textcoords, arrowprops, annotation_clip, **kwargs)[0m
+[1;32m   1822[0m     [38;5;28mself[39m[38;5;241m.[39marrow_patch [38;5;241m=[39m [38;5;28;01mNone[39;00m
+[1;32m   1824[0m [38;5;66;03m# Must come last, as some kwargs may be propagated to arrow_patch.[39;00m
+[0;32m-> 1825[0m [43mText[49m[38;5;241;43m.[39;49m[38;5;21;43m__init__[39;49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mx[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43mtext[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/matplotlib/text.py:160[0m, in [0;36mText.__init__[0;34m(self, x, y, text, color, verticalalignment, horizontalalignment, multialignment, fontproperties, rotation, linespacing, rotation_mode, usetex, wrap, transform_rotates_text, parse_math, **kwargs)[0m
+[1;32m    158[0m [38;5;28mself[39m[38;5;241m.[39m_linespacing [38;5;241m=[39m linespacing
+[1;32m    159[0m [38;5;28mself[39m[38;5;241m.[39mset_rotation_mode(rotation_mode)
+[0;32m--> 160[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mupdate[49m[43m([49m[43mkwargs[49m[43m)[49m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/matplotlib/text.py:164[0m, in [0;36mText.update[0;34m(self, kwargs)[0m
+[1;32m    162[0m [38;5;28;01mdef[39;00m [38;5;21mupdate[39m([38;5;28mself[39m, kwargs):
+[1;32m    163[0m     [38;5;66;03m# docstring inherited[39;00m
+[0;32m--> 164[0m     kwargs [38;5;241m=[39m [43mcbook[49m[38;5;241;43m.[39;49m[43mnormalize_kwargs[49m[43m([49m[43mkwargs[49m[43m,[49m[43m [49m[43mText[49m[43m)[49m
+[1;32m    165[0m     sentinel [38;5;241m=[39m [38;5;28mobject[39m()  [38;5;66;03m# bbox can be None, so use another sentinel.[39;00m
+[1;32m    166[0m     [38;5;66;03m# Update fontproperties first, as it has lowest priority.[39;00m
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/matplotlib/cbook/__init__.py:1739[0m, in [0;36mnormalize_kwargs[0;34m(kw, alias_mapping)[0m
+[1;32m   1737[0m canonical [38;5;241m=[39m to_canonical[38;5;241m.[39mget(k, k)
+[1;32m   1738[0m [38;5;28;01mif[39;00m canonical [38;5;129;01min[39;00m canonical_to_seen:
+[0;32m-> 1739[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mGot both [39m[38;5;132;01m{[39;00mcanonical_to_seen[canonical][38;5;132;01m!r}[39;00m[38;5;124m and [39m[38;5;124m"[39m
+[1;32m   1740[0m                     [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mk[38;5;132;01m!r}[39;00m[38;5;124m, which are aliases of one another[39m[38;5;124m"[39m)
+[1;32m   1741[0m canonical_to_seen[canonical] [38;5;241m=[39m k
+[1;32m   1742[0m ret[canonical] [38;5;241m=[39m v
+
+[0;31mTypeError[0m: Got both 'size' and 'fontsize', which are aliases of one another
+TypeError: Got both 'size' and 'fontsize', which are aliases of one another
+

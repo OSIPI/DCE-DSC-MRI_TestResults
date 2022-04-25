@@ -446,7 +446,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>datT4 = np.mean(data[22:27, 32:37, :], (0, 1))</p></li>
 <li><p>datT5 = np.mean(data[22:27, 43:48, :], (0, 1))</p></li>
 </ul>
-<p>Noise was added to the high-SNR data to obtain data at different SNRs</p>
+<p>Noise was added to the high-SNR data to obtain data at different SNRs. SNR-levels of 20, 30, 50, and 100 were included.</p>
 <p>The DRO data are signal values, which were converted to concentration curves using dce_to_r1eff from <a class="reference external" href="https://github.com/welcheb/pydcemri/blob/master">https://github.com/welcheb/pydcemri/blob/master</a> from David S. Smith</p>
 <p>Input values and reference values were found from the accompanying pdf document, which describes the values per voxel.</p>
 <ul class="simple">
@@ -465,18 +465,19 @@ const thebe_selector_output = ".output, .cell_output"
 <p>source: <a class="reference external" href="https://qibawiki.rsna.org/images/1/14/QIBA_DRO_2015_v1.42.pdf">https://qibawiki.rsna.org/images/1/14/QIBA_DRO_2015_v1.42.pdf</a> and <a class="reference external" href="https://qidw.rsna.org/#collection/594810551cac0a4ec8ffe574/folder/5e20ccb8b3467a6a9210e9ff">https://qidw.rsna.org/#collection/594810551cac0a4ec8ffe574/folder/5e20ccb8b3467a6a9210e9ff</a></p>
 <div class="section" id="visualize-test-data">
 <h3>Visualize test data<a class="headerlink" href="#visualize-test-data" title="Permalink to this headline">¶</a></h3>
-<p>showing the data from high SNR from the original DRO and lowest SNR of 20</p>
+<p>To get an impression of the test data that was used for the Tofts model, below we show the concentration time curves that were the input for the models.<br />
+Here we show the data from high SNR from the original (first row) DRO and lowest SNR (SNR = 20; second row).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot test data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#plot test data. Load csv file of the test data.</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;../test/DCEmodels/data/dce_DRO_data_tofts.csv&#39;</span><span class="p">)</span>
 <span class="c1"># read from CSV to pandas</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-<span class="c1">#print(df1)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">currentvoxel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    
+    <span class="c1"># first row is high SNR data</span>
     <span class="n">labelname</span> <span class="o">=</span> <span class="s1">&#39;test_vox_T&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">currentvoxel</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_highSNR&#39;</span>
     <span class="n">testdata</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">labelname</span><span class="p">)]</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">testdata</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
@@ -484,36 +485,41 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">c</span> <span class="o">=</span> <span class="n">testdata</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;highSNR&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labelname</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labelname</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">currentvoxel</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mM)&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;C (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
     
-    
+    <span class="c1"># second row is data with SNR of 20</span>
     <span class="n">labelname</span> <span class="o">=</span> <span class="s1">&#39;test_vox_T&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">currentvoxel</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_20&#39;</span>
     <span class="n">testdata</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">labelname</span><span class="p">)]</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">testdata</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">testdata</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labelname</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">labelname</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;SNR 20&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">currentvoxel</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;C (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
    
     
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/ToftsModel_5_1.png" src="_images/ToftsModel_5_1.png" />
+<img alt="_images/ToftsModel_5_0.png" src="_images/ToftsModel_5_0.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="import-data">
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h2>
+<p>Import the csv files with test results. The source data are labelled and the difference between measured and reference values was calculated.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the meta data</span>
@@ -551,7 +557,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">author_list</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="n">no_authors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">author_list</span><span class="p">)</span>
 
-<span class="c1"># calculate error between measured and reference values</span>
+<span class="c1"># calculate error/difference between measured and reference values</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_Ktrans&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Ktrans_meas&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Ktrans_ref&#39;</span><span class="p">]</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_ve&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ve_meas&#39;</span><span class="p">]</span><span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ve_ref&#39;</span><span class="p">]</span>
 
@@ -567,8 +573,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The data of all test voxels are combined (low and high SNR)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$K^</span><span class="si">{trans}</span><span class="s1">_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">)</span>
 
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.015</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
@@ -578,21 +583,15 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Hide the legend for the left subplot</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
 <span class="c1"># Set the position of the legend</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9f29d9bd90&gt;
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/ToftsModel_12_2.png" src="_images/ToftsModel_12_2.png" />
+<img alt="_images/ToftsModel_12_0.png" src="_images/ToftsModel_12_0.png" />
 </div>
 </div>
-<p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels</p>
+<p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels and all SNR levels</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_Ktrans&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
@@ -601,20 +600,21 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias  std_error  LoA lower  LoA upper
-author                                                       
-LCB_BNI_USA        -0.000112   0.000994  -0.002061   0.001837
-LEK_UoEdinburgh_UK -0.000483   0.000984  -0.002411   0.001445
-MJT_UoEdinburgh_UK -0.000114   0.000993  -0.002060   0.001833
-OGJ_OsloU_Norway    0.000145   0.001305  -0.002412   0.002702
-ST_USyd_Aus        -0.000110   0.000994  -0.002059   0.001839
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LCB_BNI_USA        -0.000112  0.000994  -0.002061   0.001837
+LEK_UoEdinburgh_UK -0.000483  0.000984  -0.002411   0.001445
+MJT_UoEdinburgh_UK -0.000114  0.000993  -0.002060   0.001833
+OGJ_OsloU_Norway    0.000145  0.001305  -0.002412   0.002702
+ST_USyd_Aus        -0.000110  0.000994  -0.002059   0.001839
 </pre></div>
 </div>
 </div>
 </div>
+<p>Split results in SNR level (only for high SNR data set and SNR of 20). The bias is slightly larger for the SNR of 20, compared to high SNR data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split in SNR level</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split in SNR level (only for high SNR data set and SNR of 20)</span>
 <span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;highSNR&#39;</span><span class="p">)]</span>
 <span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">subset</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_Ktrans&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results estimated Ktrans values for high SNR voxels&#39;</span><span class="p">)</span>
@@ -629,26 +629,26 @@ ST_USyd_Aus        -0.000110   0.000994  -0.002059   0.001839
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results estimated Ktrans values for high SNR voxels
-                        bias  std_error  LoA lower  LoA upper
-author                                                       
-LCB_BNI_USA        -0.000215   0.000134  -0.000478   0.000049
-LEK_UoEdinburgh_UK -0.000751   0.000467  -0.001667   0.000165
-MJT_UoEdinburgh_UK -0.000215   0.000134  -0.000478   0.000049
-OGJ_OsloU_Norway   -0.000218   0.000135  -0.000481   0.000046
-ST_USyd_Aus        -0.000213   0.000133  -0.000474   0.000049
+                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LCB_BNI_USA        -0.000215  0.000134  -0.000478   0.000049
+LEK_UoEdinburgh_UK -0.000751  0.000467  -0.001667   0.000165
+MJT_UoEdinburgh_UK -0.000215  0.000134  -0.000478   0.000049
+OGJ_OsloU_Norway   -0.000218  0.000135  -0.000481   0.000046
+ST_USyd_Aus        -0.000213  0.000133  -0.000474   0.000049
 Bias results estimated Ktrans values for low SNR voxels (SNR = 20)
-                        bias  std_error  LoA lower  LoA upper
-author                                                       
-LCB_BNI_USA         0.000357   0.001558  -0.002697   0.003412
-LEK_UoEdinburgh_UK -0.000386   0.001243  -0.002822   0.002050
-MJT_UoEdinburgh_UK  0.000343   0.001559  -0.002713   0.003398
-OGJ_OsloU_Norway    0.001088   0.002278  -0.003378   0.005553
-ST_USyd_Aus         0.000359   0.001558  -0.002696   0.003414
+                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LCB_BNI_USA         0.000357  0.001558  -0.002697   0.003412
+LEK_UoEdinburgh_UK -0.000386  0.001243  -0.002822   0.002050
+MJT_UoEdinburgh_UK  0.000343  0.001559  -0.002713   0.003398
+OGJ_OsloU_Norway    0.001088  0.002278  -0.003378   0.005553
+ST_USyd_Aus         0.000359  0.001558  -0.002696   0.003414
 </pre></div>
 </div>
 </div>
 </div>
-<p>Bias results estimated <span class="math notranslate nohighlight">\(v_e\)</span> values combined for all voxels</p>
+<p>Bias results estimated <span class="math notranslate nohighlight">\(v_e\)</span> values combined for all voxels and all SNR levels</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_ve&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
@@ -657,13 +657,13 @@ ST_USyd_Aus         0.000359   0.001558  -0.002696   0.003414
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias  std_error  LoA lower  LoA upper
-author                                                       
-LCB_BNI_USA         0.000052   0.001132  -0.002166   0.002270
-LEK_UoEdinburgh_UK -0.000767   0.001151  -0.003023   0.001489
-MJT_UoEdinburgh_UK  0.000052   0.001130  -0.002164   0.002267
-OGJ_OsloU_Norway   -0.000014   0.001126  -0.002221   0.002193
-ST_USyd_Aus         0.000052   0.001132  -0.002166   0.002271
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LCB_BNI_USA         0.000052  0.001132  -0.002166   0.002270
+LEK_UoEdinburgh_UK -0.000767  0.001151  -0.003023   0.001489
+MJT_UoEdinburgh_UK  0.000052  0.001130  -0.002164   0.002267
+OGJ_OsloU_Norway   -0.000014  0.001126  -0.002221   0.002193
+ST_USyd_Aus         0.000052  0.001132  -0.002166   0.002271
 </pre></div>
 </div>
 </div>
@@ -671,7 +671,7 @@ ST_USyd_Aus         0.000052   0.001132  -0.002166   0.002271
 </div>
 <div class="section" id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
-<p>Additional notes/remarks</p>
+<p>Some contributions included only the forward model, no fitting routine. For those cases we used the curvefit module from scipy package to estimate the output parameters. In all other cases the contributed fitting routine was included.</p>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 </div>

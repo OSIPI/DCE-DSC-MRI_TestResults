@@ -313,8 +313,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba">
-     Digital reference object (DRO) provided by the quantitative imaging biomarker alliance (QIBA).
+    <a class="reference internal nav-link" href="#digital-reference-object-dro">
+     Digital reference object (DRO).
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -387,8 +387,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba">
-     Digital reference object (DRO) provided by the quantitative imaging biomarker alliance (QIBA).
+    <a class="reference internal nav-link" href="#digital-reference-object-dro">
+     Digital reference object (DRO).
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -462,10 +462,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Variable flip angle (VFA) technique is a rapid T1 mapping technique based on the acquisition of several spoiled-gradient echo sequences with different flip angles (to do: add refs here).
 The minumum number of flip angle acquisitions is two.
 VFA is often used to estimate T1 values in clinically reasonable scan times. However, it is known not to be very accurate and precise (to do: add refs here).</p>
-<p>The following equation holds when a spoiled-gradient echo sequence is being used:
-$<span class="math notranslate nohighlight">\(
+<p>The following equation holds when a spoiled-gradient echo sequence is being used:</p>
+<div class="math notranslate nohighlight">
+\[
     S(\theta) = \rho_0 \cdot \frac{\mathrm{sin}(\theta)(1-E_1)}{1-\mathrm{cos}(\theta) \cdot E_1}        
-\)</span>$</p>
+\]</div>
 <p>with</p>
 <div class="math notranslate nohighlight">
 \[
@@ -481,9 +482,10 @@ $<span class="math notranslate nohighlight">\(
 <div class="section" id="description-of-test-data">
 <h2>Description of test data<a class="headerlink" href="#description-of-test-data" title="Permalink to this headline">¶</a></h2>
 <p>For the testing of the variable flip angle methods we used three data sets. For all three types of test data the same tolerances were used: absolute tolerance of 0.05 + relative tolerance of 0.05</p>
-<div class="section" id="digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba">
-<h3>Digital reference object (DRO) provided by the quantitative imaging biomarker alliance (QIBA).<a class="headerlink" href="#digital-reference-object-dro-provided-by-the-quantitative-imaging-biomarker-alliance-qiba" title="Permalink to this headline">¶</a></h3>
-<p>The original DRO consists of multiple groups of 10x10 voxels, each with a different combination of of noise level, S0 and R1.
+<div class="section" id="digital-reference-object-dro">
+<h3>Digital reference object (DRO).<a class="headerlink" href="#digital-reference-object-dro" title="Permalink to this headline">¶</a></h3>
+<p>DRO data was used from the quantitative imaging biomarker alliance (QIBA).
+The original DRO consists of multiple groups of 10x10 voxels, each with a different combination of of noise level, S0 and R1.
 One voxel is selected per combination and  voxels with S0/sigma &lt; 1500 are excluded.</p>
 <p>Details: QIBA T1 DRO v3
 Citation: Daniel Barboriak, <a class="reference external" href="https://qidw.rsna.org/#collection/594810551cac0a4ec8ffe574">https://qidw.rsna.org/#collection/594810551cac0a4ec8ffe574</a></p>
@@ -504,7 +506,14 @@ Currently, we only test non-B1-corrected data and use reference values based on 
 </div>
 <div class="section" id="import-data">
 <h2>Import data<a class="headerlink" href="#import-data" title="Permalink to this headline">¶</a></h2>
-<p>A JSON named <code class="docutils literal notranslate"><span class="pre">results-meta.json</span></code> is created to isolate the meta information. The following script can read this JSON and construct the corresponding data frame. The JSON contains a list of entries. Each entry contains the <code class="docutils literal notranslate"><span class="pre">path</span></code>, <code class="docutils literal notranslate"><span class="pre">filename</span></code>, <code class="docutils literal notranslate"><span class="pre">category</span></code>, <code class="docutils literal notranslate"><span class="pre">method</span></code> and <code class="docutils literal notranslate"><span class="pre">author</span></code>. To incorporate future results, one can just update this JSON file and re-run the following scripts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the meta data</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../test/results/results-meta.json&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loop over each entry and collect the dataframe</span>
@@ -520,20 +529,6 @@ Currently, we only test non-B1-corrected data and use reference values based on 
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="nn">Input In [2],</span> in <span class="ni">&lt;cell line: 3&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Loop over each entry and collect the dataframe</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">df</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span>     <span class="k">if</span> <span class="n">entry</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;T1mapping&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">author</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;meta&#39; is not defined
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -546,7 +541,25 @@ Currently, we only test non-B1-corrected data and use reference values based on 
 <span class="c1"># calculate error between measured and reference R_1 values</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_r1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;r1_measured&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;r1_ref&#39;</span><span class="p">]</span>
 <span class="c1"># add ratio of measured and reference R_1 values</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">r1_measured</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">r1_ref</span><span class="p">)</span> <span class="c1">#add data_ratio column</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;perc_error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">error_r1</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">r1_ref</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span> <span class="c1"># add percentage error column</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">perc_error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0      0.962027
+1      1.185573
+2      1.502314
+3      1.654948
+4      0.543545
+         ...   
+166    0.000006
+167    0.000002
+168    0.000019
+169    0.000010
+170    0.000024
+Name: perc_error, Length: 1368, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -586,7 +599,7 @@ Currently, we only test non-B1-corrected data and use reference values based on 
                       <span class="n">label_xaxis</span><span class="o">=</span><span class="n">labelx</span><span class="p">,</span> <span class="n">label_yaxis</span><span class="o">=</span><span class="n">labely</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Nonlinear fit&#39;</span><span class="p">)</span>
 
     <span class="c1"># Set the position of the legend</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Author&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 
     <span class="c1"># Here the position of the title should be adjusted</span>
     <span class="c1">#  if the legend is moved to the side</span>
@@ -613,29 +626,28 @@ Currently, we only test non-B1-corrected data and use reference values based on 
 <img alt="_images/VariableFlipAngle_12_0.png" src="_images/VariableFlipAngle_12_0.png" />
 </div>
 </div>
-<p>Next step is to calculate some statistics on the error with respect to the reference values.
-For this purpose, we calculate bias and the limits of agreement according to Bland-Altman statistics. As can be observed from the figures above, the error increases with increasing magnitude of the reference values (i.e. error is larger for large R1 values).
-This can either be solved by a log-transformation or by taking the ratio of the error (s3.1 in Bland-Altman Stats Med 1999).</p>
+<p>The next step was to calculate statistics on the error with respect to the reference values.
+For this purpose, we calculated bias and the limits of agreement for each contribution separately according to Bland-Altman statistics (Bland-Altman Stats Med 1999). As can be observed from the figures above, the error in R1 increases with increasing magnitude of the reference values (i.e. error is larger for large R1 values). This was taken into account by calculating the percentage difference (perc_error = (meas-ref)/ref*100). Mean and LoA were calculated from these percentage differences.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_linear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DRO&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)]</span>
-<span class="n">resultsBA_linear</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_linear</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">resultsBA_linear</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_linear</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;perc_error&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results for DRO data for linear implementations of R_1 estimation&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;note that results are presented as ratio of measured/reference&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;note that results are presented as the percentage error&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA_linear</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results for DRO data for linear implementations of R_1 estimation
-note that results are presented as ratio of measured/reference
-                          bias  std_error  LoA lower  LoA upper
-author                                                         
-MJT_UoEdinburgh_UK    0.997470   0.008895   0.980035   1.014904
-OG_MO_AUMC_NL_ICR_UK  0.994217   0.019167   0.956650   1.031783
-ST_USyd_Aus           0.997470   0.008895   0.980035   1.014904
-ZA_McGill_Can         0.997470   0.008895   0.980035   1.014904
+note that results are presented as the percentage error
+                          bias     stdev  LoA lower  LoA upper
+author                                                        
+MJT_UoEdinburgh_UK   -0.253040  0.889515  -1.996490   1.490410
+OG_MO_AUMC_NL_ICR_UK -0.578315  1.916658  -4.334964   3.178334
+ST_USyd_Aus          -0.253040  0.889515  -1.996490   1.490410
+ZA_McGill_Can        -0.253040  0.889515  -1.996490   1.490410
 </pre></div>
 </div>
 </div>
@@ -644,23 +656,23 @@ ZA_McGill_Can         0.997470   0.008895   0.980035   1.014904
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># same for nonlinear data</span>
 <span class="n">data_nonlinear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DRO&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)]</span>
-<span class="n">resultsBA_nonlinear</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_nonlinear</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">resultsBA_nonlinear</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data_nonlinear</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;perc_error&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results for DRO data for nonlinear implementations of R_1 estimation&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;note that results are presented as ratio of measured/reference&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;note that results are presented as the percentage error&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA_nonlinear</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results for DRO data for nonlinear implementations of R_1 estimation
-note that results are presented as ratio of measured/reference
-                          bias  std_error  LoA lower  LoA upper
-author                                                         
-MJT_UoEdinburgh_UK    0.999014   0.007855   0.983619   1.014409
-OG_MO_AUMC_NL_ICR_UK  0.999014   0.007855   0.983619   1.014409
-ST_USyd_Aus           0.999014   0.007855   0.983619   1.014409
-ZA_McGill_Can         0.999014   0.007855   0.983618   1.014409
+note that results are presented as the percentage error
+                          bias     stdev  LoA lower  LoA upper
+author                                                        
+MJT_UoEdinburgh_UK   -0.098617  0.785471  -1.638141   1.440907
+OG_MO_AUMC_NL_ICR_UK -0.098617  0.785472  -1.638141   1.440907
+ST_USyd_Aus          -0.098616  0.785472  -1.638141   1.440909
+ZA_McGill_Can        -0.098625  0.785493  -1.638191   1.440941
 </pre></div>
 </div>
 </div>
@@ -686,13 +698,13 @@ ZA_McGill_Can         0.999014   0.007855   0.983618   1.014409
 <img alt="_images/VariableFlipAngle_17_0.png" src="_images/VariableFlipAngle_17_0.png" />
 </div>
 </div>
+<p>Similarly as the DRO data, bias and LoA were calculated for the percentage difference between measured and reference values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># bland-altman statistics</span>
-<span class="n">resultsBA_linear_brain</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
-<span class="n">resultsBA_nonlinear_brain</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">resultsBA_linear_brain</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;perc_error&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">resultsBA_nonlinear_brain</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;perc_error&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results for brain data for linear implementations of R_1 estimation&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;note that results are presented as ratio of measured/reference&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA_linear_brain</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results for brain data for nonlinear implementations of R_1 estimation&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA_nonlinear_brain</span><span class="p">)</span>
@@ -701,20 +713,19 @@ ZA_McGill_Can         0.999014   0.007855   0.983618   1.014409
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results for brain data for linear implementations of R_1 estimation
-note that results are presented as ratio of measured/reference
-                          bias  std_error  LoA lower  LoA upper
-author                                                         
-MJT_UoEdinburgh_UK    0.988406   0.036641   0.916590   1.060222
-OG_MO_AUMC_NL_ICR_UK  0.985094   0.053411   0.880408   1.089780
-ST_USyd_Aus           0.988406   0.036641   0.916590   1.060222
-ZA_McGill_Can         0.988406   0.036641   0.916590   1.060222
+                          bias     stdev  LoA lower  LoA upper
+author                                                        
+MJT_UoEdinburgh_UK   -1.159407  3.664096  -8.341035   6.022222
+OG_MO_AUMC_NL_ICR_UK -1.490604  5.341127 -11.959213   8.978004
+ST_USyd_Aus          -1.159407  3.664097  -8.341037   6.022222
+ZA_McGill_Can        -1.159407  3.664096  -8.341035   6.022222
 Bias results for brain data for nonlinear implementations of R_1 estimation
-                          bias  std_error  LoA lower  LoA upper
-author                                                         
-MJT_UoEdinburgh_UK    1.000002   0.000008   0.999986   1.000019
-OG_MO_AUMC_NL_ICR_UK  1.000002   0.000008   0.999986   1.000019
-ST_USyd_Aus           1.000002   0.000008   0.999986   1.000019
-ZA_McGill_Can         1.000003   0.000012   0.999980   1.000026
+                          bias     stdev  LoA lower  LoA upper
+author                                                        
+MJT_UoEdinburgh_UK    0.000245  0.000843  -0.001407   0.001897
+OG_MO_AUMC_NL_ICR_UK  0.000245  0.000843  -0.001408   0.001898
+ST_USyd_Aus           0.000236  0.000833  -0.001398   0.001869
+ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
 </pre></div>
 </div>
 </div>
@@ -734,16 +745,15 @@ ZA_McGill_Can         1.000003   0.000012   0.999980   1.000026
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/VariableFlipAngle_19_0.png" src="_images/VariableFlipAngle_19_0.png" />
+<img alt="_images/VariableFlipAngle_20_0.png" src="_images/VariableFlipAngle_20_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># bland-altman statistics</span>
-<span class="n">resultsBA_linear_prostate</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
-<span class="n">resultsBA_nonlinear_prostate</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;ratio_r1&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">resultsBA_linear_prostate</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;perc_error&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="n">resultsBA_nonlinear_prostate</span><span class="o">=</span><span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;perc_error&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results for prostate data for linear implementations of R_1 estimation&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;note that results are presented as ratio of measured/reference&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA_linear_brain</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias results for brain data for nonlinear implementations of R_1 estimation&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA_nonlinear_brain</span><span class="p">)</span>
@@ -752,20 +762,19 @@ ZA_McGill_Can         1.000003   0.000012   0.999980   1.000026
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results for prostate data for linear implementations of R_1 estimation
-note that results are presented as ratio of measured/reference
-                          bias  std_error  LoA lower  LoA upper
-author                                                         
-MJT_UoEdinburgh_UK    0.988406   0.036641   0.916590   1.060222
-OG_MO_AUMC_NL_ICR_UK  0.985094   0.053411   0.880408   1.089780
-ST_USyd_Aus           0.988406   0.036641   0.916590   1.060222
-ZA_McGill_Can         0.988406   0.036641   0.916590   1.060222
+                          bias     stdev  LoA lower  LoA upper
+author                                                        
+MJT_UoEdinburgh_UK   -1.159407  3.664096  -8.341035   6.022222
+OG_MO_AUMC_NL_ICR_UK -1.490604  5.341127 -11.959213   8.978004
+ST_USyd_Aus          -1.159407  3.664097  -8.341037   6.022222
+ZA_McGill_Can        -1.159407  3.664096  -8.341035   6.022222
 Bias results for brain data for nonlinear implementations of R_1 estimation
-                          bias  std_error  LoA lower  LoA upper
-author                                                         
-MJT_UoEdinburgh_UK    1.000002   0.000008   0.999986   1.000019
-OG_MO_AUMC_NL_ICR_UK  1.000002   0.000008   0.999986   1.000019
-ST_USyd_Aus           1.000002   0.000008   0.999986   1.000019
-ZA_McGill_Can         1.000003   0.000012   0.999980   1.000026
+                          bias     stdev  LoA lower  LoA upper
+author                                                        
+MJT_UoEdinburgh_UK    0.000245  0.000843  -0.001407   0.001897
+OG_MO_AUMC_NL_ICR_UK  0.000245  0.000843  -0.001408   0.001898
+ST_USyd_Aus           0.000236  0.000833  -0.001398   0.001869
+ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
 </pre></div>
 </div>
 </div>

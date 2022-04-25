@@ -318,8 +318,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#results">
-   Results
+  <a class="reference internal nav-link" href="#visualization-of-test-data">
+   Visualization of test data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -370,8 +370,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#results">
-   Results
+  <a class="reference internal nav-link" href="#visualization-of-test-data">
+   Visualization of test data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -437,15 +437,16 @@ R_1^{nl} \approx - \frac{1}{\mathrm{TR}} \cdot \mathrm{log}[\frac{\Xi(E_{1,0} - 
 C^{nl} \approx \frac{1}{r_1}(R_1^{nl} - R_{1,0})
 \]</div>
 <p>with <span class="math notranslate nohighlight">\(r_1\)</span> is the relaxivity of the contrast agent being used.</p>
-<p>An often used linear approximation (eq (8) in Schabel et al.):
-$<span class="math notranslate nohighlight">\(
+<p>A linear approximation can also be used (eq (8) in Schabel et al.):</p>
+<div class="math notranslate nohighlight">
+\[
 C^l \approx \frac{1}{r_1}(R_{1,0}\Xi)
-\)</span>$</p>
-<p>Both linear and nonlinear approximations are used in the current contributions</p>
+\]</div>
+<p>In the current code contributions only the nonlinear approximation has been used.</p>
 </div>
 <div class="section" id="test-data">
 <h2>Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">¶</a></h2>
-<p>Signal intensity curves randomly selected from one patient with DCE-MRI of the uterus. They were converted to concentration using code from the University of Edinburgh but with various flip angles, baseline T1 values etc rather than the actual values used in the acquisition, to test a wider range of possibilites.</p>
+<p>Signal intensity curves randomly selected from one patient with DCE-MRI of the uterus. They were converted to concentration using code from the University of Edinburgh but with various flip angles, baseline T1 values etc rather than the actual values used in the acquisition, to test a wider range of possibilites. For a visualization of the test data, see curves below.</p>
 <p>Tolerances:
 absolute: 0.00001 mM/ relative 0.00001</p>
 <p>Source: University of Edinburgh, Mechanistic substudy of UCON <a class="reference external" href="https://www.birmingham.ac.uk/research/bctu/trials/womens/ucon/ucon-home.aspx">https://www.birmingham.ac.uk/research/bctu/trials/womens/ucon/ucon-home.aspx</a> used with permission.<br />
@@ -490,48 +491,46 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <span class="n">no_voxels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">voxel_list</span><span class="p">)</span>
 
 <span class="n">tolerances</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;conc&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span> <span class="p">:</span> <span class="mf">0.00001</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span> <span class="mf">0.00001</span> <span class="p">}}</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="c1"># temporal resolution; to do, check with LK if this is correct</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="c1"># in s</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="results">
-<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
-<p>Plot the reference concentration time curves</p>
+<div class="section" id="visualization-of-test-data">
+<h2>Visualization of test data<a class="headerlink" href="#visualization-of-test-data" title="Permalink to this headline">¶</a></h2>
+<p>To get an impression of the test data included so far, the reference concentration time curves are plotted below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">no_voxels</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">no_voxels</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="n">current_voxel</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_voxels</span><span class="p">):</span>
     
     <span class="n">subset_data</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">author_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">voxel_list</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">])]</span>
     <span class="n">no_time_points</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">subset_data</span><span class="o">.</span><span class="n">conc_meas</span><span class="p">)</span>
-    <span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_time_points</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> <span class="c1"># to do, check with LK if this is correct</span>
+    <span class="n">time_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_time_points</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_array</span><span class="p">,</span> <span class="n">subset_data</span><span class="o">.</span><span class="n">conc_ref</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ref&#39;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">current_voxel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mM)&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">current_voxel</span> <span class="o">==</span> <span class="n">no_voxels</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">)</span>
-        
-    <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">voxel_list</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">])</span>
-   
-      
-<span class="n">ax</span><span class="p">[</span><span class="n">no_voxels</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.04</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;C (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time (s)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">voxel_list</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="c1"># set fontsize</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">current_voxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+ 
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/SItoC_10_1.png" src="_images/SItoC_10_1.png" />
+<img alt="_images/SItoC_10_0.png" src="_images/SItoC_10_0.png" />
 </div>
 </div>
 <p>Plot bland altman figure of error between output concentration values and reference values vs the reference values. All datapoints are combined into one figure in this case</p>
@@ -540,9 +539,9 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate error between measured and reference R_1 values</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_conc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;conc_meas&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;conc_ref&#39;</span><span class="p">]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;conc&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.000001</span><span class="p">,</span><span class="mf">0.000001</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$C_</span><span class="si">{ref}</span><span class="s1">$ (mM)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta $C (mM)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
@@ -551,10 +550,7 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 432x288 with 0 Axes&gt;
-</pre></div>
-</div>
-<img alt="_images/SItoC_12_1.png" src="_images/SItoC_12_1.png" />
+<img alt="_images/SItoC_12_0.png" src="_images/SItoC_12_0.png" />
 </div>
 </div>
 <p>Calculate bias and limits of agreement for all contributions wrt the reference values.
@@ -570,7 +566,7 @@ The differences between measured and reference values are really small for the c
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results estimated concentration values combined for all voxels
-                                  bias     std_error     LoA lower  \
+                                  bias         stdev     LoA lower  \
 author                                                               
 LCB_BNI_USA               7.509272e-15  1.391629e-14 -1.976666e-14   
 LEK_UoEdinburgh_UK        7.871666e-16  8.214980e-15 -1.531419e-14   
@@ -594,7 +590,7 @@ ST_USyd_Aus               2.482942e-14
 </div>
 <div class="section" id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
-<p>Additional notes/remarks</p>
+<p>Check the test code for modification in input data to be able to run the tests.</p>
 <div class="section" id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
 <p>Schabel MC and Parker DL “Uncertainty and bias in contrast concentration measurements using spoiled gradient echo pulse sequences” Phys Med Biol (2008), doi:10.1088/0031-9155/53/9/010</p>
