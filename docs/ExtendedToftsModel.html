@@ -191,8 +191,13 @@ const thebe_selector_output = ".output, .cell_output"
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="2cmpExchangeModel.html">
-       Two-compartment exchange model
+      <a class="reference internal" href="2CXM.html">
+       Two-compartment exchange model (2CXM)
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="2CUM.html">
+       Two-compartment uptake model (2CUM)
       </a>
      </li>
     </ul>
@@ -328,6 +333,18 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#results">
    Results
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-delayed-data">
+     Non-delayed data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delayed-results">
+     Delayed results
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notes">
@@ -387,6 +404,18 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#results">
    Results
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-delayed-data">
+     Non-delayed data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delayed-results">
+     Delayed results
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#notes">
@@ -442,7 +471,8 @@ Selected voxels:</p>
 <li><p>datT2=alldata[156,105,6,:] –&gt; tumour voxel 2</p></li>
 <li><p>datT3=alldata[139,93,6,:] –&gt; tumour voxel 3</p></li>
 </ul>
-<p>SNR was added to obtain data at different SNR (20, 30, 50 and 100)</p>
+<p>SNR was added to obtain data at different SNR (20, 30, 50 and 100).
+A delayed version of the test data was created by shifting the time curves with 5 time points. This data is labeled as ‘delayed’ and only used with the models that allow the fitting of a delay.</p>
 <p>The DRO data are signal values, which were converted to concentration curves using dce_to_r1eff from <a class="reference external" href="https://github.com/welcheb/pydcemri/blob/master">https://github.com/welcheb/pydcemri/blob/master</a> from David S. Smith</p>
 <p>Input and reference values were found from the accompanying pdf document, which describes the values per voxel.</p>
 <ul class="simple">
@@ -455,9 +485,9 @@ Selected voxels:</p>
 <p>Tolerances</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(v_e\)</span>: a_tol=0.05, r_tol=0, start=0.2, bounds=(0,1)</p></li>
-<li><p><span class="math notranslate nohighlight">\(v_p\)</span>: a_tol=0.0025, r_tol=0, start=0.01, bounds=(0,1)</p></li>
-<li><p><span class="math notranslate nohighlight">\(K^{trans}\)</span>: a_tol=0.005, r_tol=0.01, start=0.6, bounds=(0,5), units [/min]</p></li>
-<li><p>delay: a_tol=0.2, r_tol=0, start=0, bounds=(-10,10), units [s]</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_p\)</span>: a_tol=0.025, r_tol=0, start=0.01, bounds=(0,1)</p></li>
+<li><p><span class="math notranslate nohighlight">\(K^{trans}\)</span>: a_tol=0.005, r_tol=0.1, start=0.6, bounds=(0,5), units [/min]</p></li>
+<li><p>delay: a_tol=0.5, r_tol=0, start=0, bounds=(-10,10), units [s]</p></li>
 </ul>
 <p>Source: Bosca, Ryan J., and Edward F. Jackson. “Creating an anthropomorphic digital MR phantom—an extensible tool for comparing and evaluating quantitative imaging algorithms.” Physics in Medicine &amp; Biology 61.2 (2016): 974.</p>
 <div class="section" id="visualize-test-data">
@@ -540,7 +570,10 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># label data source</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split delayed and non-delayed data</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_delayed&#39;</span><span class="p">)</span>
+
+<span class="c1"># label data source</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;highSNR&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;highSNR&#39;</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_20&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR20&#39;</span>
@@ -557,7 +590,7 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_vp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vp_meas&#39;</span><span class="p">]</span><span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vp_ref&#39;</span><span class="p">]</span>
 
 <span class="c1"># tolerances</span>
-<span class="n">tolerances</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span> <span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span> <span class="mf">0.01</span> <span class="p">},</span><span class="s1">&#39;ve&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span> <span class="s1">&#39;vp&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span><span class="p">:</span><span class="mf">0.0025</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}}</span>
+<span class="n">tolerances</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span> <span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span> <span class="mf">0.1</span> <span class="p">},</span><span class="s1">&#39;ve&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">},</span> <span class="s1">&#39;vp&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span><span class="p">:</span><span class="mf">0.025</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">}}</span>
 </pre></div>
 </div>
 </div>
@@ -565,14 +598,17 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 </div>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
-<p>The data of all test voxels are combined (low and high SNR)</p>
+<div class="section" id="non-delayed-data">
+<h3>Non-delayed data<a class="headerlink" href="#non-delayed-data" title="Permalink to this headline">¶</a></h3>
+<p>Some models allow the fit of a delay. For the tests with non-delayed data, the delay was fixed to 0.
+The data of all test voxels are combined (low and high SNR).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0075</span><span class="p">,</span><span class="mf">0.0075</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$K^</span><span class="si">{trans}</span><span class="s1">_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">)</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0075</span><span class="p">,</span><span class="mf">0.0075</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$K^</span><span class="si">{trans}</span><span class="s1">_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">)</span>
 
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.015</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.005</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.015</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.005</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
@@ -585,13 +621,13 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ExtendedToftsModel_12_0.png" src="_images/ExtendedToftsModel_12_0.png" />
+<img alt="_images/ExtendedToftsModel_13_0.png" src="_images/ExtendedToftsModel_13_0.png" />
 </div>
 </div>
 <p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels (low and high SNR)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_Ktrans&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_Ktrans&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -599,11 +635,12 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              bias     stdev  LoA lower  LoA upper
 author                                                            
-LEK_UoEdinburgh_UK        0.000007  0.000663  -0.001292   0.001307
+LEK_UoEdinburgh_UK        0.000003  0.000588  -0.001149   0.001154
 MB_QBI_UoManchester      -0.000026  0.000503  -0.001012   0.000960
 MJT_UoEdinburgh_UK        0.000003  0.000588  -0.001149   0.001154
-OGJ_OsloU_Norway         -0.000026  0.000503  -0.001012   0.000960
-OG_MO_AUMC_NL_ICR_RMH_UK  0.000503  0.000778  -0.001023   0.002029
+OGJ_OsloU_Norway_LLSQ    -0.000026  0.000503  -0.001012   0.000960
+OGJ_OsloU_Norway_NLLS     0.000003  0.000588  -0.001149   0.001154
+OG_MO_AUMC_NL_ICR_RMH_UK  0.000380  0.000675  -0.000942   0.001702
 ST_USyd_Aus               0.000004  0.000588  -0.001149   0.001156
 </pre></div>
 </div>
@@ -612,7 +649,7 @@ ST_USyd_Aus               0.000004  0.000588  -0.001149   0.001156
 <p>Bias results estimated <span class="math notranslate nohighlight">\(v_e\)</span> values combined for all voxels (low and high SNR)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_ve&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_ve&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -620,11 +657,12 @@ ST_USyd_Aus               0.000004  0.000588  -0.001149   0.001156
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              bias     stdev  LoA lower  LoA upper
 author                                                            
-LEK_UoEdinburgh_UK       -0.000076  0.000914  -0.001868   0.001716
+LEK_UoEdinburgh_UK       -0.000111  0.000865  -0.001807   0.001585
 MB_QBI_UoManchester      -0.000113  0.000869  -0.001815   0.001589
 MJT_UoEdinburgh_UK       -0.000111  0.000865  -0.001807   0.001585
-OGJ_OsloU_Norway         -0.000113  0.000869  -0.001815   0.001589
-OG_MO_AUMC_NL_ICR_RMH_UK -0.003115  0.001648  -0.006345   0.000114
+OGJ_OsloU_Norway_LLSQ    -0.000113  0.000869  -0.001815   0.001589
+OGJ_OsloU_Norway_NLLS    -0.000111  0.000865  -0.001807   0.001585
+OG_MO_AUMC_NL_ICR_RMH_UK -0.002839  0.001547  -0.005871   0.000192
 ST_USyd_Aus              -0.000116  0.000865  -0.001812   0.001579
 </pre></div>
 </div>
@@ -633,7 +671,7 @@ ST_USyd_Aus              -0.000116  0.000865  -0.001812   0.001579
 <p>Bias results estimated <span class="math notranslate nohighlight">\(v_p\)</span> values combined for all voxels (low and high SNR)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_vp&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_vp&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -641,13 +679,92 @@ ST_USyd_Aus              -0.000116  0.000865  -0.001812   0.001579
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              bias     stdev  LoA lower  LoA upper
 author                                                            
-LEK_UoEdinburgh_UK       -0.000552  0.000634  -0.001795   0.000692
+LEK_UoEdinburgh_UK       -0.000561  0.000508  -0.001556   0.000434
 MB_QBI_UoManchester      -0.000041  0.000520  -0.001061   0.000979
 MJT_UoEdinburgh_UK       -0.000033  0.000468  -0.000950   0.000884
-OGJ_OsloU_Norway         -0.000041  0.000520  -0.001061   0.000979
-OG_MO_AUMC_NL_ICR_RMH_UK -0.000063  0.000577  -0.001193   0.001068
+OGJ_OsloU_Norway_LLSQ    -0.000041  0.000520  -0.001061   0.000979
+OGJ_OsloU_Norway_NLLS    -0.000561  0.000508  -0.001556   0.000434
+OG_MO_AUMC_NL_ICR_RMH_UK -0.000003  0.000541  -0.001063   0.001056
 ST_USyd_Aus              -0.000032  0.000468  -0.000949   0.000884
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="delayed-results">
+<h3>Delayed results<a class="headerlink" href="#delayed-results" title="Permalink to this headline">¶</a></h3>
+<p>Some contributions allowed the fitting of a delay. For those, additional tests with a delay were performed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0075</span><span class="p">,</span><span class="mf">0.0075</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$K^</span><span class="si">{trans}</span><span class="s1">_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">)</span>
+
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.015</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.005</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># Hide the legend for the left subplot</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># Set the position of the legend</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ExtendedToftsModel_21_0.png" src="_images/ExtendedToftsModel_21_0.png" />
+</div>
+</div>
+<p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels (low and high SNR)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_Ktrans&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              bias     stdev  LoA lower  LoA upper
+author                                                            
+LEK_UoEdinburgh_UK        0.000026  0.000719  -0.001382   0.001435
+OG_MO_AUMC_NL_ICR_RMH_UK  0.000626  0.000876  -0.001091   0.002344
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bias results estimated <span class="math notranslate nohighlight">\(v_e\)</span> values combined for all voxels (low and high SNR)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_ve&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              bias     stdev  LoA lower  LoA upper
+author                                                            
+LEK_UoEdinburgh_UK       -0.000119  0.001005  -0.002088   0.001850
+OG_MO_AUMC_NL_ICR_RMH_UK -0.003392  0.001752  -0.006826   0.000042
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bias results estimated <span class="math notranslate nohighlight">\(v_p\)</span> values combined for all voxels (low and high SNR)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_vp&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                              bias     stdev  LoA lower  LoA upper
+author                                                            
+LEK_UoEdinburgh_UK       -0.000556  0.000657  -0.001844   0.000731
+OG_MO_AUMC_NL_ICR_RMH_UK -0.000122  0.000624  -0.001344   0.001101
+</pre></div>
+</div>
 </div>
 </div>
 </div>
