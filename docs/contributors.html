@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Overview of code collection &#8212; OSIPI Code</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,7 +61,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -71,9 +84,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -91,14 +105,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   OSIPI DCE-DSC code
-  </a>
- </li>
-</ul>
-<ul class="current nav bd-sidenav">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    OSIPI DCE-DSC code
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Overview of code collection
@@ -220,12 +235,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
 </div>
 
 
@@ -233,78 +253,134 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
     
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
+    <div class="header-article row sticky-top noprint">
         
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/contributors.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/OSIPI/DCE-DSC-MRI_CodeCollection/demo?urlpath=lab/tree/notebooks/contributors.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/contributors.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
     </div>
 </div>
 
-            <!-- Source interaction buttons -->
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/OSIPI/DCE-DSC-MRI_CodeCollection/demo?urlpath=lab/tree/notebooks/contributors.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
 </div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-        </div>
     </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Overview of code collection</h1>
@@ -315,11 +391,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="overview-of-code-collection">
-<h1>Overview of code collection<a class="headerlink" href="#overview-of-code-collection" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="overview-of-code-collection">
+<h1>Overview of code collection<a class="headerlink" href="#overview-of-code-collection" title="Permalink to this headline">#</a></h1>
 <p>This is a table of current code contributions.</p>
 <div class="cell tag_remove-input docutils container">
 </div>
@@ -343,999 +420,315 @@ const thebe_selector_output = ".output, .cell_output"
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Technique</th>
-      <th>Category</th>
-      <th>Subcategory</th>
-      <th>Notes</th>
-      <th>Subfolder</th>
-      <th>Authors</th>
-      <th>Institution</th>
-      <th>Tester</th>
-      <th>Test status (empty/in-progress/complete)</th>
-      <th>Unnamed: 9</th>
+      <th>Technique,Category,Subcategory,Notes,Subfolder,Authors,Institution,Tester,Test status (empty/in-progress/complete),</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>DCE</td>
-      <td>Bolus arrival time</td>
-      <td>piecewise linear quadratic function</td>
-      <td>Cheong et al (DOI: 10.1088/0031-9155/48/5/403)</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Bolus arrival time,piecewise linear quadra...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>DCE</td>
-      <td>Bolus arrival time</td>
-      <td>fitting Kety (Tofts) model to first third of t...</td>
-      <td>NaN</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Bolus arrival time,fitting Kety (Tofts) mo...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>DCE</td>
-      <td>Concentration to enhancement</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Concentration to enhancement,,,MJT_UoEdinb...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>DCE</td>
-      <td>Concentration to R1</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Concentration to R1,,,OG_MO_AUMC_ICR_RMH,"...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>DCE</td>
-      <td>Concentration to signal</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Concentration to signal,SPGR,,LEK_UoEdinbu...</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>DCE</td>
-      <td>Concentration to signal</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Concentration to signal,SPGR,,MB_QBI_UoMan...</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>DCE</td>
-      <td>Concentration to signal</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Concentration to signal,SPGR,,OG_MO_AUMC_I...</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>AIF parameterization</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,AIF parameterization,,OG_M...</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Georgiou AIF</td>
-      <td>Georgiou et al (DOI: 10.1002/mrm.27524)</td>
-      <td>PvH_NKI</td>
-      <td>Petra van Houdt</td>
-      <td>the Netherlands Cancer Institute, the Netherlands</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Georgiou AIF,Georgiou et a...</td>
     </tr>
     <tr>
       <th>9</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Head-and-neck population AIF</td>
-      <td>Wong et al (DOI: https://doi.org/10.2967/jnume...</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Head-and-neck population A...</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>load AIF</td>
-      <td>load from txt</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,load AIF,load from txt,MB_...</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>load AIF</td>
-      <td>from txt, gamma-variate function</td>
-      <td>OGJ_OsloU_Norway</td>
-      <td>Ole Gunnar Johansen</td>
-      <td>University of Oslo, Norway</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,load AIF,"from txt, gamma-...</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Parker AIF</td>
-      <td>NaN</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Parker AIF,,ST_USydAUS_DCE...</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Parker AIF</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Parker AIF,,OG_MO_AUMC_ICR...</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Parker AIF</td>
-      <td>NaN</td>
-      <td>PvH_NKI</td>
-      <td>Petra van Houdt</td>
-      <td>the Netherlands Cancer Institute, the Netherlands</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Parker AIF,,PvH_NKI,Petra ...</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Parker AIF</td>
-      <td>Parker AIF, Parker-like AIF</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Parker AIF,"Parker AIF, Pa...</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>Parker AIF</td>
-      <td>NaN</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,Parker AIF,,MB_QBI_UoManch...</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>patient-specific AIF</td>
-      <td>measured AIF</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,patient-specific AIF,measu...</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>DCE</td>
-      <td>Input Functions</td>
-      <td>preclinical AIF</td>
-      <td>McGrath et al (DOI: 10.1002/mrm.21959)</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>JK/PvH</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Input Functions,preclinical AIF,McGrath et...</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>DCE</td>
-      <td>Parameter derivation</td>
-      <td>iAUC</td>
-      <td>NaN</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Parameter derivation,iAUC,,MB_QBI_UoManche...</td>
     </tr>
     <tr>
       <th>20</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>1-cmp</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,1-cmp,forward model...</td>
     </tr>
     <tr>
       <th>21</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp exchange</td>
-      <td>forward model</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp exchange,forw...</td>
     </tr>
     <tr>
       <th>22</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp exchange</td>
-      <td>forward model, NLLS and LLSQ fitting methods</td>
-      <td>OGJ_OsloU_Norway</td>
-      <td>Ole Gunnar Johansen</td>
-      <td>University of Oslo, Norway</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp exchange,"for...</td>
     </tr>
     <tr>
       <th>23</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp exchange</td>
-      <td>forward model, NLLS fitting (concentration), N...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp exchange,"for...</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp exchange</td>
-      <td>forward model, LLSQ fitting methods</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp exchange,"for...</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp filtration</td>
-      <td>forward model, LLSQ fitting methods</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp filtration,"f...</td>
     </tr>
     <tr>
       <th>26</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp uptake</td>
-      <td>forward model</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp uptake,forwar...</td>
     </tr>
     <tr>
       <th>27</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>2-cmp uptake</td>
-      <td>forward model, NLLS fitting (concentration), N...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,2-cmp uptake,"forwa...</td>
     </tr>
     <tr>
       <th>28</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>AATH</td>
-      <td>forward model</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,AATH,forward model,...</td>
     </tr>
     <tr>
       <th>29</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>active uptake and efflux (AUEM)</td>
-      <td>forward model, LLSQ fitting methods</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,active uptake and e...</td>
     </tr>
     <tr>
       <th>30</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>dual-inlet 1-cmp</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,dual-inlet 1-cmp,fo...</td>
     </tr>
     <tr>
       <th>31</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>dual-inlet ext Tofts</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,dual-inlet ext Toft...</td>
     </tr>
     <tr>
       <th>32</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>dual-inlet general model</td>
-      <td>works with 2CXM, 2CFM, AUEM, LLSQ fitting methods</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,dual-inlet general ...</td>
     </tr>
     <tr>
       <th>33</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>dual-inlet high-flow 2-cmp Gadoxetate</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,dual-inlet high-flo...</td>
     </tr>
     <tr>
       <th>34</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>extended Tofts</td>
-      <td>forward model</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,extended Tofts,forw...</td>
     </tr>
     <tr>
       <th>35</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>extended Tofts</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,extended Tofts,forw...</td>
     </tr>
     <tr>
       <th>36</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>extended Tofts</td>
-      <td>forward model, NLLS fitting methods</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,extended Tofts,"for...</td>
     </tr>
     <tr>
       <th>37</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>extended Tofts</td>
-      <td>forward model, NLLS and LLSQ fitting methods</td>
-      <td>OGJ_OsloU_Norway</td>
-      <td>Ole Gunnar Johansen</td>
-      <td>University of Oslo, Norway</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,extended Tofts,"for...</td>
     </tr>
     <tr>
       <th>38</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>extended Tofts</td>
-      <td>forward model, NLLS fitting (concentration), N...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,extended Tofts,"for...</td>
     </tr>
     <tr>
       <th>39</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>extended Tofts</td>
-      <td>forward model, LLSQ fitting methods</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,extended Tofts,"for...</td>
     </tr>
     <tr>
       <th>40</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>high flow 2-cmp Gadoxetate</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,high flow 2-cmp Gad...</td>
     </tr>
     <tr>
       <th>41</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Patlak</td>
-      <td>forward model</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Patlak,forward mode...</td>
     </tr>
     <tr>
       <th>42</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Patlak</td>
-      <td>forward model</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Patlak,forward mode...</td>
     </tr>
     <tr>
       <th>43</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Patlak</td>
-      <td>forward model, NLLS fitting (concentration), N...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Patlak,"forward mod...</td>
     </tr>
     <tr>
       <th>44</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>steady-state vp</td>
-      <td>forward model, NLLS fitting (concentration), N...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,steady-state vp,"fo...</td>
     </tr>
     <tr>
       <th>45</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Tofts</td>
-      <td>forward model</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Tofts,forward model...</td>
     </tr>
     <tr>
       <th>46</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Tofts</td>
-      <td>forward model, NLLS and LLSQ fitting methods</td>
-      <td>OGJ_OsloU_Norway</td>
-      <td>Ole Gunnar Johansen</td>
-      <td>University of Oslo, Norway</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Tofts,"forward mode...</td>
     </tr>
     <tr>
       <th>47</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Tofts</td>
-      <td>forward model, NLLS fitting (concentration), N...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Tofts,"forward mode...</td>
     </tr>
     <tr>
       <th>48</th>
-      <td>DCE</td>
-      <td>Pharmacokinetic models</td>
-      <td>Tofts</td>
-      <td>forward model, NLLS fitting methods</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>ST/OGC</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,Pharmacokinetic models,Tofts,"forward mode...</td>
     </tr>
     <tr>
       <th>49</th>
-      <td>DCE</td>
-      <td>Preprocessing</td>
-      <td>enhancement detection</td>
-      <td>check for enhancement</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Preprocessing,enhancement detection,check ...</td>
     </tr>
     <tr>
       <th>50</th>
-      <td>DCE</td>
-      <td>R1 to concentration</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,R1 to concentration,,,OG_MO_AUMC_ICR_RMH,"...</td>
     </tr>
     <tr>
       <th>51</th>
-      <td>DCE</td>
-      <td>R1 to signal</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,R1 to signal,SPGR,,ST_USydAUS_DCE,Sirisha ...</td>
     </tr>
     <tr>
       <th>52</th>
-      <td>DCE</td>
-      <td>R1 to signal</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,R1 to signal,SPGR,,OG_MO_AUMC_ICR_RMH,"Oli...</td>
     </tr>
     <tr>
       <th>53</th>
-      <td>DCE</td>
-      <td>Signal to concentration</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>LEK_UoEdinburgh</td>
-      <td>Lucy Kershaw</td>
-      <td>University of Edinburgh, UK</td>
-      <td>LK</td>
-      <td>completed</td>
-      <td>NaN</td>
+      <td>DCE,Signal to concentration,SPGR,,LEK_UoEdinbu...</td>
     </tr>
     <tr>
       <th>54</th>
-      <td>DCE</td>
-      <td>Signal to concentration</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>LK</td>
-      <td>completed</td>
-      <td>NaN</td>
+      <td>DCE,Signal to concentration,SPGR,,ST_USydAUS_D...</td>
     </tr>
     <tr>
       <th>55</th>
-      <td>DCE</td>
-      <td>Signal to concentration</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>LK</td>
-      <td>completed</td>
-      <td>NaN</td>
+      <td>DCE,Signal to concentration,SPGR,,MJT_UoEdinbu...</td>
     </tr>
     <tr>
       <th>56</th>
-      <td>DCE</td>
-      <td>Signal to concentration</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>MB_QBI_UoManchesterUK</td>
-      <td>Michael Berks</td>
-      <td>University of Manchester, UK</td>
-      <td>LK</td>
-      <td>completed</td>
-      <td>NaN</td>
+      <td>DCE,Signal to concentration,SPGR,,MB_QBI_UoMan...</td>
     </tr>
     <tr>
       <th>57</th>
-      <td>DCE</td>
-      <td>Signal to concentration</td>
-      <td>SPGR or GE-EPI</td>
-      <td>NaN</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>LK</td>
-      <td>completed</td>
-      <td>NaN</td>
+      <td>DCE,Signal to concentration,SPGR or GE-EPI,,LC...</td>
     </tr>
     <tr>
       <th>58</th>
-      <td>DCE</td>
-      <td>Signal to enhancement</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Signal to enhancement,,,MJT_UoEdinburghUK,...</td>
     </tr>
     <tr>
       <th>59</th>
-      <td>DCE</td>
-      <td>Signal to R1</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>ST_USydAUS_DCE</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Signal to R1,SPGR,,ST_USydAUS_DCE,Sirisha ...</td>
     </tr>
     <tr>
       <th>60</th>
-      <td>DCE</td>
-      <td>Signal to R1</td>
-      <td>SPGR</td>
-      <td>NaN</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Signal to R1,SPGR,,OG_MO_AUMC_ICR_RMH,"Oli...</td>
     </tr>
     <tr>
       <th>61</th>
-      <td>DCE</td>
-      <td>Signal to R1</td>
-      <td>SPGR or GE-EPI</td>
-      <td>NaN</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE,Signal to R1,SPGR or GE-EPI,,LCB_BNI,Laura...</td>
     </tr>
     <tr>
       <th>62</th>
-      <td>DCE</td>
-      <td>T1</td>
-      <td>DESPOT1-HIFI</td>
-      <td>Fit any combination of (IR-)SPGR scans to esti...</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>MJT</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,T1,DESPOT1-HIFI,Fit any combination of (IR...</td>
     </tr>
     <tr>
       <th>63</th>
-      <td>DCE</td>
-      <td>T1</td>
-      <td>VFA</td>
-      <td>linear, nonlinear</td>
-      <td>ST_SydneyAus_T1</td>
-      <td>Sirisha Tadimalla</td>
-      <td>University of Sydney, Australia</td>
-      <td>MJT</td>
-      <td>complete</td>
-      <td>NaN</td>
+      <td>DCE,T1,VFA,"linear, nonlinear",ST_SydneyAus_T1...</td>
     </tr>
     <tr>
       <th>64</th>
-      <td>DCE</td>
-      <td>T1</td>
-      <td>VFA</td>
-      <td>linear, nonlinear, two flip angles</td>
-      <td>MJT_UoEdinburghUK</td>
-      <td>Michael Thrippleton</td>
-      <td>University of Edinburgh, UK</td>
-      <td>MJT</td>
-      <td>complete</td>
-      <td>NaN</td>
+      <td>DCE,T1,VFA,"linear, nonlinear, two flip angles...</td>
     </tr>
     <tr>
       <th>65</th>
-      <td>DCE</td>
-      <td>T1</td>
-      <td>VFA</td>
-      <td>two flip angles</td>
-      <td>OG_MO_AUMC_ICR_RMH</td>
-      <td>Oliver Gurney-Champion, Matthew Orton</td>
-      <td>Amsterdam University Medical Center, the Nethe...</td>
-      <td>MJT</td>
-      <td>in-progress</td>
-      <td>NaN</td>
+      <td>DCE,T1,VFA,two flip angles,OG_MO_AUMC_ICR_RMH,...</td>
     </tr>
     <tr>
       <th>66</th>
-      <td>DCE</td>
-      <td>T1</td>
-      <td>VFA</td>
-      <td>despot, novifast</td>
-      <td>McGill_VFA</td>
-      <td>Zaki Ahmed</td>
-      <td>McGill University, Canada</td>
-      <td>MJT</td>
-      <td>complete</td>
-      <td>NaN</td>
+      <td>DCE,T1,VFA,"despot, novifast",McGill_VFA,Zaki ...</td>
     </tr>
     <tr>
       <th>67</th>
-      <td>DCE/DSC</td>
-      <td>AIF deconvolution</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>SR_TBG_BNIPhoenixUSA</td>
-      <td>Sudarshan Ragunathan</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DCE/DSC,AIF deconvolution,,,SR_TBG_BNIPhoenixU...</td>
     </tr>
     <tr>
       <th>68</th>
-      <td>DSC</td>
-      <td>Input Functions</td>
-      <td>automatic AIF selection</td>
-      <td>fully automatic, semi-automatic</td>
-      <td>JBJA_GUSahlgrenskaSWE</td>
-      <td>Jesper Browall, Jonathan Arvidsson</td>
-      <td>Sahlgrenska University Hospital and Gothenburg...</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Input Functions,automatic AIF selection,"f...</td>
     </tr>
     <tr>
       <th>69</th>
-      <td>DSC</td>
-      <td>Leakage correction</td>
-      <td>BSW</td>
-      <td>NaN</td>
-      <td>SR_TBG_BNIPhoenixUSA</td>
-      <td>Sudarshan Ragunathan</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Leakage correction,BSW,,SR_TBG_BNIPhoenixU...</td>
     </tr>
     <tr>
       <th>70</th>
-      <td>DSC</td>
-      <td>Leakage correction</td>
-      <td>BSW</td>
-      <td>NaN</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Leakage correction,BSW,,LCB_BNI,Laura Bell...</td>
     </tr>
     <tr>
       <th>71</th>
-      <td>DSC</td>
-      <td>Parameter derivation</td>
-      <td>CBV,CBF,MTT</td>
-      <td>NaN</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Parameter derivation,"CBV,CBF,MTT",,LCB_BN...</td>
     </tr>
     <tr>
       <th>72</th>
-      <td>DSC</td>
-      <td>Parameter derivation</td>
-      <td>CBV,CBF,MTT</td>
-      <td>NaN</td>
-      <td>SR_TBG_BNIPhoenixUSA</td>
-      <td>Sudarshan Ragunathan</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Parameter derivation,"CBV,CBF,MTT",,SR_TBG...</td>
     </tr>
     <tr>
       <th>73</th>
-      <td>DSC</td>
-      <td>Signal to deltaR2*</td>
-      <td>single echo, dual echo</td>
-      <td>NaN</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Signal to deltaR2*,"single echo, dual echo...</td>
     </tr>
     <tr>
       <th>74</th>
-      <td>DSC</td>
-      <td>Signal to R2*</td>
-      <td>dual echo</td>
-      <td>NaN</td>
-      <td>LCB_BNI</td>
-      <td>Laura Bell</td>
-      <td>Barrow Neurological Institute, USA</td>
-      <td>tbd</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>DSC,Signal to R2*,dual echo,,LCB_BNI,Laura Bel...</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1359,9 +752,11 @@ const thebe_selector_output = ".output, .cell_output"
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1377,24 +772,28 @@ const thebe_selector_output = ".output, .cell_output"
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By OSIPI<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
     
-      By OSIPI<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
