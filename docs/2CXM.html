@@ -679,7 +679,6 @@ If the tolerances are not shown, it means that they are outside the limits of th
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ps&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.04</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$PS_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $PS$ ($min^{-1}$)&#39;</span><span class="p">)</span>
-
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
 <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;fp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$f_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $f_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
@@ -712,7 +711,7 @@ If the tolerances are not shown, it means that they are outside the limits of th
 author                                                       
 LEK_UoEdinburgh_UK   0.000150  0.004673  -0.009010   0.009309
 MB_QBI_UoManchester  0.000061  0.004847  -0.009440   0.009561
-MJT_UoEdinburgh_UK   0.000313  0.004853  -0.009199   0.009824
+MJT_UoEdinburgh_UK   0.000259  0.004817  -0.009183   0.009701
 OGJ_OsloU_Norway     0.000061  0.004847  -0.009440   0.009561
 </pre></div>
 </div>
@@ -731,7 +730,7 @@ OGJ_OsloU_Norway     0.000061  0.004847  -0.009440   0.009561
 author                                                       
 LEK_UoEdinburgh_UK   0.001673  0.003827  -0.005828   0.009173
 MB_QBI_UoManchester  0.000856  0.003520  -0.006044   0.007756
-MJT_UoEdinburgh_UK   0.000601  0.003193  -0.005657   0.006859
+MJT_UoEdinburgh_UK   0.000606  0.003206  -0.005678   0.006889
 OGJ_OsloU_Norway     0.000856  0.003520  -0.006044   0.007756
 </pre></div>
 </div>
@@ -750,7 +749,7 @@ OGJ_OsloU_Norway     0.000856  0.003520  -0.006044   0.007756
 author                                                       
 LEK_UoEdinburgh_UK  -0.001461  0.003401  -0.008127   0.005204
 MB_QBI_UoManchester -0.000666  0.003261  -0.007058   0.005725
-MJT_UoEdinburgh_UK  -0.000495  0.002912  -0.006203   0.005213
+MJT_UoEdinburgh_UK  -0.000492  0.002916  -0.006207   0.005223
 OGJ_OsloU_Norway    -0.000666  0.003261  -0.007058   0.005725
 </pre></div>
 </div>
@@ -769,7 +768,7 @@ OGJ_OsloU_Norway    -0.000666  0.003261  -0.007058   0.005725
 author                                                       
 LEK_UoEdinburgh_UK  -0.499689  0.535799  -1.549855   0.550476
 MB_QBI_UoManchester -0.028328  0.239519  -0.497785   0.441130
-MJT_UoEdinburgh_UK  -0.057317  0.128973  -0.310104   0.195471
+MJT_UoEdinburgh_UK   0.003312  0.124339  -0.240393   0.247016
 OGJ_OsloU_Norway    -0.028328  0.239519  -0.497785   0.441130
 </pre></div>
 </div>
