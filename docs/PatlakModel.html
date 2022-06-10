@@ -669,21 +669,7 @@ A delayed version of the test data was created by shifting the time curves with 
 <h3>Non-delayed data<a class="headerlink" href="#non-delayed-data" title="Permalink to this headline">#</a></h3>
 <p>Some models allow the fit of a delay. For the tests with non-delayed data, the delay was fixed to 0.
 The data of all test voxels are combined (low and high SNR).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">For</span> <span class="n">the</span> <span class="n">contribtution</span> <span class="n">MJT_UoEdingburgh_UK</span> <span class="n">there</span> <span class="n">are</span> <span class="n">two</span> <span class="n">contributions</span> <span class="p">(</span><span class="n">NLLS</span> <span class="ow">and</span> <span class="n">LLSQ</span> <span class="n">fitting</span> <span class="n">approach</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">linear</span> <span class="n">approach</span> <span class="ow">is</span> <span class="n">labeled</span> <span class="k">with</span> <span class="n">an</span> <span class="n">extra</span> <span class="n">tag</span> <span class="n">_LLSQ</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">figures</span> <span class="n">below</span><span class="o">.</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-    <span class="n">For</span> <span class="n">the</span> <span class="n">contribtution</span> <span class="n">MJT_UoEdingburgh_UK</span> <span class="n">there</span> <span class="n">are</span> <span class="n">two</span> <span class="n">contributions</span> <span class="p">(</span><span class="n">NLLS</span> <span class="ow">and</span> <span class="n">LLSQ</span> <span class="n">fitting</span> <span class="n">approach</span><span class="p">)</span><span class="o">.</span> <span class="n">The</span> <span class="n">linear</span> <span class="n">approach</span> <span class="ow">is</span> <span class="n">labeled</span> <span class="k">with</span> <span class="n">an</span> <span class="n">extra</span> <span class="n">tag</span> <span class="n">_LLSQ</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">figures</span> <span class="n">below</span><span class="o">.</span>
-        <span class="o">^</span>
-<span class="ne">SyntaxError</span>: invalid syntax
-</pre></div>
-</div>
-</div>
-</div>
+<p>For the contribtution MJT_UoEdingburgh_UK there are two contributions (NLLS and LLSQ fitting approach). The linear approach is labeled with an extra tag _LLSQ in the figures below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
@@ -700,6 +686,9 @@ The data of all test voxels are combined (low and high SNR).</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/PatlakModel_14_0.png" src="_images/PatlakModel_14_0.png" />
+</div>
 </div>
 <p>Bias results estimated PS values combined for all voxels</p>
 <div class="cell docutils container">
@@ -709,12 +698,32 @@ The data of all test voxels are combined (low and high SNR).</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                             bias     stdev  LoA lower  LoA upper
+author                                                           
+LEK_UoEdinburgh_UK       0.000054  0.000203  -0.000344   0.000453
+MJT_UoEdinburgh_UK       0.000054  0.000203  -0.000344   0.000453
+MJT_UoEdinburgh_UK_llsq  0.000054  0.000203  -0.000344   0.000453
+ST_USyd_Aus              0.000054  0.000203  -0.000344   0.000453
+</pre></div>
+</div>
+</div>
 </div>
 <p>Bias results estimated <span class="math notranslate nohighlight">\(v_p\)</span> values combined for all voxels</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_vp&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                             bias     stdev  LoA lower  LoA upper
+author                                                           
+LEK_UoEdinburgh_UK      -0.000049  0.000821  -0.001658   0.001561
+MJT_UoEdinburgh_UK      -0.000049  0.000821  -0.001658   0.001561
+MJT_UoEdinburgh_UK_llsq -0.000049  0.000821  -0.001658   0.001561
+ST_USyd_Aus             -0.000327  0.000817  -0.001928   0.001274
 </pre></div>
 </div>
 </div>
@@ -739,6 +748,9 @@ The data of all test voxels are combined (low and high SNR).</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="_images/PatlakModel_20_0.png" src="_images/PatlakModel_20_0.png" />
+</div>
 </div>
 <p>Bias results estimated PS values combined for all voxels</p>
 <div class="cell docutils container">
@@ -748,12 +760,28 @@ The data of all test voxels are combined (low and high SNR).</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LEK_UoEdinburgh_UK -0.000048  0.000213  -0.000465   0.000369
+MJT_UoEdinburgh_UK -0.000111  0.000236  -0.000573   0.000351
+</pre></div>
+</div>
+</div>
 </div>
 <p>Bias results estimated <span class="math notranslate nohighlight">\(v_p\)</span> values combined for all voxels</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_vp&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">resultsBA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        bias     stdev  LoA lower  LoA upper
+author                                                      
+LEK_UoEdinburgh_UK  0.000054  0.000521  -0.000967   0.001075
+MJT_UoEdinburgh_UK  0.000126  0.000537  -0.000926   0.001178
 </pre></div>
 </div>
 </div>
