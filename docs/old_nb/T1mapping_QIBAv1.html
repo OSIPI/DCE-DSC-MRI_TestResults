@@ -554,13 +554,13 @@ title="Print to PDF"
 <span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">download_osf</span><span class="p">(</span><span class="s2">&quot;https://osf.io/jzu4k/download&quot;</span><span class="p">,</span> <span class="n">vfafile</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">vfadata</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="n">vfafile</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/site-packages/osipi_code_collection/utils/nb.py:19,</span> in <span class="ni">download_osf</span><span class="nt">(url, file, overwrite)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/osipi_code_collection/utils/nb.py:19,</span> in <span class="ni">download_osf</span><span class="nt">(url, file, overwrite)</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Skipping: </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">return</span>
 <span class="ne">---&gt; </span><span class="mi">19</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">return</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.12/x64/lib/python3.8/urllib/request.py:257,</span> in <span class="ni">urlretrieve</span><span class="nt">(url, filename, reporthook, data)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/urllib/request.py:257,</span> in <span class="ni">urlretrieve</span><span class="nt">(url, filename, reporthook, data)</span>
 <span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="c1"># Handle temporary file setup.</span>
 <span class="g g-Whitespace">    </span><span class="mi">256</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
 <span class="ne">--&gt; </span><span class="mi">257</span>     <span class="n">tfp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>

@@ -543,6 +543,7 @@ title="Print to PDF"
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import statements</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -615,7 +616,7 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
         <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;C (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    
+
     <span class="n">labelname</span> <span class="o">=</span> <span class="s1">&#39;test_vox_T&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">currentvoxel</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;_20&#39;</span>
     <span class="n">testdata</span> <span class="o">=</span> <span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">labelname</span><span class="p">)]</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">testdata</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
@@ -629,9 +630,6 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
         <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;C (mM)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
     <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">currentvoxel</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    
-   
-    
 </pre></div>
 </div>
 </div>
@@ -661,7 +659,7 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
         <span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">author</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="n">df_entry</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">fpath</span><span class="p">,</span> <span class="n">fname</span><span class="p">))</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">author</span><span class="o">=</span><span class="n">author</span><span class="p">)</span>
         <span class="n">df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_entry</span><span class="p">)</span>
-    
+
 <span class="c1"># Concat all entries</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
@@ -675,11 +673,17 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 
 <span class="c1"># label data source</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;highSNR&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;highSNR&#39;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_20&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR20&#39;</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_30&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR30&#39;</span> 
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_50&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR50&#39;</span> 
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_100&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR100&#39;</span> 
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;highSNR&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;high SNR&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_20&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR 20&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_30&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR 30&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_50&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR 50&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;_100&#39;</span><span class="p">),</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;SNR 100&#39;</span>
+
+<span class="c1"># label voxels</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;voxel&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;test_vox_T1&#39;</span><span class="p">),</span><span class="s1">&#39;voxel&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;voxel 1&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;test_vox_T2&#39;</span><span class="p">),</span><span class="s1">&#39;voxel&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;voxel 2&#39;</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;test_vox_T3&#39;</span><span class="p">),</span><span class="s1">&#39;voxel&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;voxel 3&#39;</span>
 
 <span class="n">author_list</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="n">no_authors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">author_list</span><span class="p">)</span>
@@ -701,27 +705,135 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 <section id="non-delayed-data">
 <h3>Non-delayed data<a class="headerlink" href="#non-delayed-data" title="Permalink to this headline">#</a></h3>
 <p>Some models allow the fit of a delay. For the tests with non-delayed data, the delay was fixed to 0.
-The data of all test voxels are combined (low and high SNR).</p>
+The data are shown with a categorial swarm plot, so for each text voxel separately to better appreciate the differences between contributions. Note that, the x-axis is not a continuous axis, but has a label per test voxel. To get an idea of the reference values per test case, the table below refers as a legend for the figure.</p>
+<p>Note that, one author (OGJ_OsloU_Norway) provided two options to fit the model (LLSQ and NLLS). These were considered separate contributions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0075</span><span class="p">,</span><span class="mf">0.0075</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$K^</span><span class="si">{trans}</span><span class="s1">_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">)</span>
-
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.015</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.005</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
-
-<span class="c1"># Hide the legend for the left subplot</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># Set the position of the legend</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)[[</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span><span class="s1">&#39;Ktrans_ref&#39;</span><span class="p">,</span><span class="s1">&#39;ve_ref&#39;</span><span class="p">,</span> <span class="s1">&#39;vp_ref&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ExtendedToftsModel_13_0.png" src="_images/ExtendedToftsModel_13_0.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>voxel</th>
+      <th>Ktrans_ref</th>
+      <th>ve_ref</th>
+      <th>vp_ref</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>voxel 1</td>
+      <td>0.063524</td>
+      <td>0.175212</td>
+      <td>0.021750</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>voxel 2</td>
+      <td>0.075512</td>
+      <td>0.148789</td>
+      <td>0.024059</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>voxel 3</td>
+      <td>0.050843</td>
+      <td>0.207023</td>
+      <td>0.004991</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set-up styling for seaborn plots</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="c1">#sns.set_style(&quot;whitegrid&quot;)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_Ktrans&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
+              <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s2">$ ($min^{-1}$)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ExtendedToftsModel_15_0.png" src="_images/ExtendedToftsModel_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># same for ve</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_ve&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
+              <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $v_</span><span class="si">{e}</span><span class="s2">$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ExtendedToftsModel_16_0.png" src="_images/ExtendedToftsModel_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># same for vp</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_vp&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
+              <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $v_</span><span class="si">{p}</span><span class="s2">$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ExtendedToftsModel_17_0.png" src="_images/ExtendedToftsModel_17_0.png" />
 </div>
 </div>
 <p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels (low and high SNR)</p>
@@ -796,24 +908,62 @@ ST_USyd_Aus              -0.000032  0.000468  -0.000949   0.000884
 <p>Some contributions allowed the fitting of a delay. For those, additional tests with a delay were performed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;Ktrans&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.0075</span><span class="p">,</span><span class="mf">0.0075</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$K^</span><span class="si">{trans}</span><span class="s1">_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">)</span>
-
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.015</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{e,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{e}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.005</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
-
-<span class="c1"># Hide the legend for the left subplot</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># Set the position of the legend</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ktrans</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_Ktrans&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
+              <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s2">$ ($min^{-1}$)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ExtendedToftsModel_21_0.png" src="_images/ExtendedToftsModel_21_0.png" />
+<img alt="_images/ExtendedToftsModel_25_0.png" src="_images/ExtendedToftsModel_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># same for ve</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_ve&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
+              <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $v_</span><span class="si">{e}</span><span class="s2">$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ExtendedToftsModel_26_0.png" src="_images/ExtendedToftsModel_26_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># same for vp</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_vp&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
+              <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $v_</span><span class="si">{p}</span><span class="s2">$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ExtendedToftsModel_27_0.png" src="_images/ExtendedToftsModel_27_0.png" />
 </div>
 </div>
 <p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels (low and high SNR)</p>
@@ -829,7 +979,7 @@ ST_USyd_Aus              -0.000032  0.000468  -0.000949   0.000884
 author                                                            
 LEK_UoEdinburgh_UK        0.000026  0.000719  -0.001382   0.001435
 MJT_UoEdinburgh_UK        0.000044  0.000738  -0.001402   0.001491
-OG_MO_AUMC_NL_ICR_RMH_UK  0.000627  0.000876  -0.001091   0.002344
+OG_MO_AUMC_NL_ICR_RMH_UK  0.000626  0.000876  -0.001091   0.002344
 </pre></div>
 </div>
 </div>
@@ -847,7 +997,7 @@ OG_MO_AUMC_NL_ICR_RMH_UK  0.000627  0.000876  -0.001091   0.002344
 author                                                            
 LEK_UoEdinburgh_UK       -0.000119  0.001005  -0.002088   0.001850
 MJT_UoEdinburgh_UK       -0.000116  0.001003  -0.002082   0.001850
-OG_MO_AUMC_NL_ICR_RMH_UK -0.003392  0.001752  -0.006826   0.000042
+OG_MO_AUMC_NL_ICR_RMH_UK -0.003392  0.001752  -0.006825   0.000042
 </pre></div>
 </div>
 </div>
@@ -870,6 +1020,7 @@ OG_MO_AUMC_NL_ICR_RMH_UK -0.000122  0.000624  -0.001344   0.001101
 </div>
 </div>
 </div>
+<p>As a reference, show table with reference values for the three voxels:</p>
 </section>
 </section>
 <section id="notes">

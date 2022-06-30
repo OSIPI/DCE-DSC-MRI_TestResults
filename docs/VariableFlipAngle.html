@@ -666,6 +666,15 @@ Currently, we only test non-B1-corrected data and use reference values based on 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set-up styling for seaborn plots</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to wrap up the plot</span>
 <span class="k">def</span> <span class="nf">plotPair</span><span class="p">(</span><span class="n">data_linear</span><span class="p">,</span> <span class="n">data_nonlinear</span><span class="p">,</span> <span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span><span class="p">,</span> <span class="n">suptitle</span><span class="p">,</span>
              <span class="n">tolerances</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;r1&#39;</span><span class="p">:{</span><span class="s1">&#39;atol&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span><span class="mf">0.05</span><span class="p">}},</span> 
@@ -675,23 +684,22 @@ Currently, we only test non-B1-corrected data and use reference values based on 
              <span class="n">labely</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $R_</span><span class="si">{1}</span><span class="s1">$ (s$^{-1}$)&#39;</span><span class="p">,</span>
              <span class="n">suptitle_x</span><span class="o">=</span><span class="mf">0.4</span><span class="p">):</span>
     
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
     <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data_linear</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">log_plot</span><span class="o">=</span><span class="n">log_plot</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span>
                       <span class="n">label_xaxis</span><span class="o">=</span><span class="n">labelx</span><span class="p">,</span> <span class="n">label_yaxis</span><span class="o">=</span><span class="n">labely</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Linear fit&#39;</span><span class="p">)</span>
 
-    <span class="c1"># Hide the legend for the left subplot</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="c1"># set the legend</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
     <span class="c1"># plot results of nonlinear fit</span>
     <span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data_nonlinear</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">,</span> <span class="n">log_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="n">ylim</span><span class="p">,</span>
                       <span class="n">label_xaxis</span><span class="o">=</span><span class="n">labelx</span><span class="p">,</span> <span class="n">label_yaxis</span><span class="o">=</span><span class="n">labely</span><span class="p">,</span> <span class="n">fig_title</span><span class="o">=</span><span class="s1">&#39;Nonlinear fit&#39;</span><span class="p">)</span>
 
     <span class="c1"># Set the position of the legend</span>
-    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 
     <span class="c1"># Here the position of the title should be adjusted</span>
-    <span class="c1">#  if the legend is moved to the side</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">suptitle</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">suptitle_x</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">suptitle</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">suptitle_x</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -704,14 +712,14 @@ Currently, we only test non-B1-corrected data and use reference values based on 
     <span class="n">data_linear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DRO&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span>
     <span class="n">data_nonlinear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;DRO&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span>
     <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span>
-    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span>
     <span class="n">suptitle</span><span class="o">=</span><span class="s1">&#39;DRO Data&#39;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/VariableFlipAngle_12_0.png" src="_images/VariableFlipAngle_12_0.png" />
+<img alt="_images/VariableFlipAngle_13_0.png" src="_images/VariableFlipAngle_13_0.png" />
 </div>
 </div>
 <p>The next step was to calculate statistics on the error with respect to the reference values.
@@ -756,9 +764,9 @@ ZA_McGill_Can      -0.25304  0.889515   -1.99649    1.49041
 note that results are presented as the percentage error
                           bias     stdev  LoA lower  LoA upper
 author                                                        
-MJT_UoEdinburgh_UK   -0.098617  0.785471  -1.638140   1.440907
+MJT_UoEdinburgh_UK   -0.098617  0.785471  -1.638141   1.440907
 OG_MO_AUMC_NL_ICR_UK -0.098617  0.785472  -1.638142   1.440908
-ST_USyd_Aus          -0.098616  0.785472  -1.638141   1.440908
+ST_USyd_Aus          -0.098617  0.785472  -1.638141   1.440907
 ZA_McGill_Can        -0.098625  0.785493  -1.638191   1.440941
 </pre></div>
 </div>
@@ -775,14 +783,14 @@ ZA_McGill_Can        -0.098625  0.785493  -1.638191   1.440941
     <span class="n">data_linear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span>
     <span class="n">data_nonlinear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;brain&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span>
     <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mf">0.3</span><span class="p">],</span>
-    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">],</span>
     <span class="n">suptitle</span><span class="o">=</span><span class="s1">&#39;Brain Data&#39;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/VariableFlipAngle_17_0.png" src="_images/VariableFlipAngle_17_0.png" />
+<img alt="_images/VariableFlipAngle_18_0.png" src="_images/VariableFlipAngle_18_0.png" />
 </div>
 </div>
 <p>Similarly as the DRO data, bias and LoA were calculated for the percentage difference between measured and reference values.</p>
@@ -803,14 +811,14 @@ ZA_McGill_Can        -0.098625  0.785493  -1.638191   1.440941
                         bias     stdev  LoA lower  LoA upper
 author                                                      
 MJT_UoEdinburgh_UK -1.159407  3.664096  -8.341035   6.022222
-ST_USyd_Aus        -1.159407  3.664096  -8.341036   6.022222
+ST_USyd_Aus        -1.159407  3.664097  -8.341037   6.022222
 ZA_McGill_Can      -1.159407  3.664096  -8.341035   6.022222
 Bias results for brain data for nonlinear implementations of R_1 estimation
                           bias     stdev  LoA lower  LoA upper
 author                                                        
-MJT_UoEdinburgh_UK    0.000244  0.000841  -0.001404   0.001891
-OG_MO_AUMC_NL_ICR_UK  0.000246  0.000844  -0.001409   0.001901
-ST_USyd_Aus           0.000238  0.000837  -0.001404   0.001879
+MJT_UoEdinburgh_UK    0.000246  0.000843  -0.001407   0.001898
+OG_MO_AUMC_NL_ICR_UK  0.000246  0.000843  -0.001406   0.001898
+ST_USyd_Aus           0.000241  0.000838  -0.001401   0.001883
 ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
 </pre></div>
 </div>
@@ -824,14 +832,14 @@ ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
     <span class="n">data_linear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;linear&#39;</span><span class="p">)],</span>
     <span class="n">data_nonlinear</span><span class="o">=</span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;prostate&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;nonlinear&#39;</span><span class="p">)],</span>
     <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="o">**-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="o">**</span><span class="mf">0.2</span><span class="p">],</span>
-    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">],</span>
     <span class="n">suptitle</span><span class="o">=</span><span class="s1">&#39;Prostate Data&#39;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/VariableFlipAngle_20_0.png" src="_images/VariableFlipAngle_20_0.png" />
+<img alt="_images/VariableFlipAngle_21_0.png" src="_images/VariableFlipAngle_21_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -851,14 +859,14 @@ ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
                         bias     stdev  LoA lower  LoA upper
 author                                                      
 MJT_UoEdinburgh_UK -1.159407  3.664096  -8.341035   6.022222
-ST_USyd_Aus        -1.159407  3.664096  -8.341036   6.022222
+ST_USyd_Aus        -1.159407  3.664097  -8.341037   6.022222
 ZA_McGill_Can      -1.159407  3.664096  -8.341035   6.022222
 Bias results for brain data for nonlinear implementations of R_1 estimation
                           bias     stdev  LoA lower  LoA upper
 author                                                        
-MJT_UoEdinburgh_UK    0.000244  0.000841  -0.001404   0.001891
-OG_MO_AUMC_NL_ICR_UK  0.000246  0.000844  -0.001409   0.001901
-ST_USyd_Aus           0.000238  0.000837  -0.001404   0.001879
+MJT_UoEdinburgh_UK    0.000246  0.000843  -0.001407   0.001898
+OG_MO_AUMC_NL_ICR_UK  0.000246  0.000843  -0.001406   0.001898
+ST_USyd_Aus           0.000241  0.000838  -0.001401   0.001883
 ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
 </pre></div>
 </div>

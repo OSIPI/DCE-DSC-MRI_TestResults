@@ -595,6 +595,9 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <span class="n">voxel_list</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 <span class="n">no_voxels</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">voxel_list</span><span class="p">)</span>
 
+<span class="c1"># calculate error between measured and reference R_1 values</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_conc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;conc_meas&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;conc_ref&#39;</span><span class="p">]</span>
+
 <span class="n">tolerances</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;conc&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;atol&#39;</span> <span class="p">:</span> <span class="mf">0.00001</span><span class="p">,</span> <span class="s1">&#39;rtol&#39;</span><span class="p">:</span> <span class="mf">0.00001</span> <span class="p">}}</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="c1"># in s</span>
 </pre></div>
@@ -638,15 +641,23 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <img alt="_images/SItoC_10_0.png" src="_images/SItoC_10_0.png" />
 </div>
 </div>
-<p>Plot bland altman figure of error between output concentration values and reference values vs the reference values. All datapoints are combined into one figure in this case</p>
+<p>Plot bland altman figure of error between output concentration values and reference values vs the reference values. All datapoints from all test curves are combined into one figure</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculate error between measured and reference R_1 values</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;error_conc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;conc_meas&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;conc_ref&#39;</span><span class="p">]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;conc&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.000001</span><span class="p">,</span><span class="mf">0.000001</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$C_</span><span class="si">{ref}</span><span class="s1">$ (mM)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta $C (mM)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set-up styling for seaborn plots</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;conc&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.000001</span><span class="p">,</span><span class="mf">0.000001</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$C_</span><span class="si">{ref}</span><span class="s1">$ (mM)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta $C (mM)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
@@ -655,7 +666,7 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/SItoC_12_0.png" src="_images/SItoC_12_0.png" />
+<img alt="_images/SItoC_13_0.png" src="_images/SItoC_13_0.png" />
 </div>
 </div>
 <p>Calculate bias and limits of agreement for all contributions wrt the reference values.
@@ -673,23 +684,23 @@ The differences between measured and reference values are really small for the c
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias results estimated concentration values combined for all voxels
                                   bias         stdev     LoA lower  \
 author                                                               
-LCB_BNI_USA               6.049615e-15  1.202255e-14 -1.751459e-14   
-LEK_UoEdinburgh_UK       -4.178611e-16  2.156456e-15 -4.644515e-15   
-MB_UoManchester_UK        1.087938e-15  9.074768e-15 -1.669861e-14   
-MJT_UoEdinburgh_UK       -5.732874e-13  3.481388e-12 -7.396807e-12   
-MJT_UoEdinburgh_UK_num   -1.759723e-08  1.265300e-07 -2.655960e-07   
-OG_MO_AUMC_NL_ICR_RMH_UK -4.076883e-16  2.160811e-15 -4.642878e-15   
-ST_USyd_Aus               2.107358e-16  1.183809e-14 -2.299192e-14   
+LCB_BNI_USA              -6.225602e-14  1.002467e-13 -2.587395e-13   
+LEK_UoEdinburgh_UK       -7.354648e-14  9.498901e-14 -2.597249e-13   
+MB_UoManchester_UK       -7.425111e-14  9.539893e-14 -2.612330e-13   
+MJT_UoEdinburgh_UK       -1.570635e-13  3.697846e-12 -7.404842e-12   
+MJT_UoEdinburgh_UK_num   -1.759729e-08  1.265300e-07 -2.655961e-07   
+OG_MO_AUMC_NL_ICR_RMH_UK -7.354402e-14  9.498492e-14 -2.597145e-13   
+ST_USyd_Aus              -5.996202e-14  9.795241e-14 -2.519487e-13   
 
                              LoA upper  
 author                                  
-LCB_BNI_USA               2.961382e-14  
-LEK_UoEdinburgh_UK        3.808793e-15  
-MB_UoManchester_UK        1.887448e-14  
-MJT_UoEdinburgh_UK        6.250232e-12  
-MJT_UoEdinburgh_UK_num    2.304016e-07  
-OG_MO_AUMC_NL_ICR_RMH_UK  3.827501e-15  
-ST_USyd_Aus               2.341339e-14  
+LCB_BNI_USA               1.342275e-13  
+LEK_UoEdinburgh_UK        1.126320e-13  
+MB_UoManchester_UK        1.127308e-13  
+MJT_UoEdinburgh_UK        7.090715e-12  
+MJT_UoEdinburgh_UK_num    2.304015e-07  
+OG_MO_AUMC_NL_ICR_RMH_UK  1.126264e-13  
+ST_USyd_Aus               1.320247e-13  
 </pre></div>
 </div>
 </div>

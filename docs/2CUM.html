@@ -661,23 +661,295 @@ A delayed version of the test data was created by shifting the time curves with 
 <p>If the tolerance lines are not shown, it means that they are outside the limits of the y-axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ps&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.04</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$PS_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $PS$ ($min^{-1}$)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;fp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$f_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $f_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
-
-<span class="c1"># Hide the legend for the left subplot</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># Set the position of the legend</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">27</span><span class="p">)[[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span><span class="s1">&#39;ps_ref&#39;</span><span class="p">,</span><span class="s1">&#39;vp_ref&#39;</span><span class="p">,</span> <span class="s1">&#39;fp_ref&#39;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2CUM_12_0.png" src="_images/2CUM_12_0.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>ps_ref</th>
+      <th>vp_ref</th>
+      <th>fp_ref</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>case_1</td>
+      <td>0.00001</td>
+      <td>0.02</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>case_2</td>
+      <td>0.01000</td>
+      <td>0.02</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>case_3</td>
+      <td>0.02500</td>
+      <td>0.02</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>case_4</td>
+      <td>0.00001</td>
+      <td>0.02</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>case_5</td>
+      <td>0.01000</td>
+      <td>0.02</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>case_6</td>
+      <td>0.02500</td>
+      <td>0.02</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>case_7</td>
+      <td>0.00001</td>
+      <td>0.02</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>case_8</td>
+      <td>0.01000</td>
+      <td>0.02</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>case_9</td>
+      <td>0.02500</td>
+      <td>0.02</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>case_10</td>
+      <td>0.00001</td>
+      <td>0.05</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>case_11</td>
+      <td>0.01000</td>
+      <td>0.05</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>case_12</td>
+      <td>0.02500</td>
+      <td>0.05</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>case_13</td>
+      <td>0.00001</td>
+      <td>0.05</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>case_14</td>
+      <td>0.01000</td>
+      <td>0.05</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>case_15</td>
+      <td>0.02500</td>
+      <td>0.05</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>case_16</td>
+      <td>0.00001</td>
+      <td>0.05</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>case_17</td>
+      <td>0.01000</td>
+      <td>0.05</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>case_18</td>
+      <td>0.02500</td>
+      <td>0.05</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>case_19</td>
+      <td>0.00001</td>
+      <td>0.10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>case_20</td>
+      <td>0.01000</td>
+      <td>0.10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>case_21</td>
+      <td>0.02500</td>
+      <td>0.10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>case_22</td>
+      <td>0.00001</td>
+      <td>0.10</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>case_23</td>
+      <td>0.01000</td>
+      <td>0.10</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>case_24</td>
+      <td>0.02500</td>
+      <td>0.10</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>case_25</td>
+      <td>0.00001</td>
+      <td>0.10</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>case_26</td>
+      <td>0.01000</td>
+      <td>0.10</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>case_27</td>
+      <td>0.02500</td>
+      <td>0.10</td>
+      <td>40</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set-up styling for seaborn plots</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">font_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="c1">#sns.set_style(&quot;whitegrid&quot;)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_ps&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ PS ($min^{-1}$)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2CUM_14_0.png" src="_images/2CUM_14_0.png" />
+</div>
+</div>
+<p>Bias results estimated PS values combined for all voxels</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_vp&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$v_{p,ref}$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2CUM_16_0.png" src="_images/2CUM_16_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_fp&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$f_{p,ref}$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2CUM_17_0.png" src="_images/2CUM_17_0.png" />
 </div>
 </div>
 <p>Bias results estimated PS values combined for all voxels</p>
@@ -737,23 +1009,60 @@ MJT_UoEdinburgh_UK -0.096534  0.220072  -0.527876   0.334807
 <p>Some contributions allowed the fitting of a delay. For those, additional tests with a delay were performed.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;ps&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.04</span><span class="p">,</span><span class="mf">0.04</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$PS_</span><span class="si">{ref}</span><span class="s1">$ ($min^{-1}$)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $PS$ ($min^{-1}$)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$v_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $v_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">plot_bland_altman</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">tolerances</span><span class="p">,</span> <span class="s1">&#39;fp&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">label_xaxis</span><span class="o">=</span><span class="s1">&#39;$f_{p,ref}$ (-)&#39;</span><span class="p">,</span><span class="n">label_yaxis</span><span class="o">=</span><span class="s1">&#39;$\Delta$ $f_</span><span class="si">{p}</span><span class="s1">$ (-)&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
 
-<span class="c1"># Hide the legend for the left subplot</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_legend</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># Set the position of the legend</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_ps&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ PS ($min^{-1}$)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2CUM_20_0.png" src="_images/2CUM_20_0.png" />
+<img alt="_images/2CUM_25_0.png" src="_images/2CUM_25_0.png" />
+</div>
+</div>
+<p>Bias results estimated PS values combined for all voxels</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_vp&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$v_{p,ref}$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2CUM_27_0.png" src="_images/2CUM_27_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># instead of a regular bland-altman plot we opted for a catplot + swarm for these results. In this way we can appreciate the results of the different contributions per test case better.</span>
+<span class="c1"># the downside is that the values of the test cases are not obvious. This might be something to improve upon at a later stage</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_fp&quot;</span><span class="p">,</span>
+              <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$f_{p,ref}$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">_legend</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ContributionID&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2CUM_28_0.png" src="_images/2CUM_28_0.png" />
 </div>
 </div>
 </section>
