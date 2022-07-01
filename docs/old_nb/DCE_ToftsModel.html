@@ -114,7 +114,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../contributors.html">
-   Overview of code repository
+   Overview of code collection
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -481,8 +481,8 @@ title="Print to PDF"
 <p>First, let’s load the required modules and download the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osipi_dce_dsc_repo.wrappers.tofts</span> <span class="kn">import</span> <span class="n">tofts_fit</span><span class="p">,</span> <span class="n">show_maps</span><span class="p">,</span> <span class="n">show_error_maps</span>
-<span class="kn">from</span> <span class="nn">osipi_dce_dsc_repo.utils.nb</span> <span class="kn">import</span> <span class="n">download_osf</span><span class="p">,</span> <span class="n">loadmat</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">osipi_code_collection.wrappers.tofts</span> <span class="kn">import</span> <span class="n">tofts_fit</span><span class="p">,</span> <span class="n">show_maps</span><span class="p">,</span> <span class="n">show_error_maps</span>
+<span class="kn">from</span> <span class="nn">osipi_code_collection.utils.nb</span> <span class="kn">import</span> <span class="n">download_osf</span><span class="p">,</span> <span class="n">loadmat</span>
 </pre></div>
 </div>
 </div>
@@ -521,7 +521,7 @@ for more information.
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Load the QIBA phantom data</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">dcedata</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="n">dcefile</span><span class="p">)</span>
 
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/osipi_dce_dsc_repo/utils/nb.py:19,</span> in <span class="ni">download_osf</span><span class="nt">(url, file, overwrite)</span>
+<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/osipi_code_collection/utils/nb.py:19,</span> in <span class="ni">download_osf</span><span class="nt">(url, file, overwrite)</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Skipping: </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">return</span>
 <span class="ne">---&gt; </span><span class="mi">19</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
