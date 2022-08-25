@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -564,9 +564,9 @@ title="Print to PDF"
 </div>
 <section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
-<p>Variable flip angle (VFA) technique is a rapid T1 mapping technique based on the acquisition of several spoiled-gradient echo sequences with different flip angles (to do: add refs here).
-The minumum number of flip angle acquisitions is two.
-VFA is often used to estimate T1 values in clinically reasonable scan times. However, it is known not to be very accurate and precise (to do: add refs here).</p>
+<p>Variable flip angle (VFA) technique is a rapid T1 mapping technique based on the acquisition of several spoiled-gradient echo sequences with different flip angles (Fram et al. 1987, Deoni et al. 2005).
+The minimum number of flip angle acquisitions is two.
+VFA is often used to estimate T1 values in clinically reasonable scan times. However, it is known not to be very accurate and precise [ref].</p>
 <p>The following equation holds when a spoiled-gradient echo sequence is being used:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -586,7 +586,7 @@ VFA is often used to estimate T1 values in clinically reasonable scan times. How
 </section>
 <section id="description-of-test-data">
 <h2>Description of test data<a class="headerlink" href="#description-of-test-data" title="Permalink to this headline">#</a></h2>
-<p>For the testing of the variable flip angle methods we used three data sets. For all three types of test data the same tolerances were used: absolute tolerance of 0.05 + relative tolerance of 0.05</p>
+<p>For testing of the variable flip angle methods we used three data sets. For all three types of test data the same tolerances were used: absolute tolerance of 0.05 + relative tolerance of 0.05</p>
 <section id="digital-reference-object-dro">
 <h3>Digital reference object (DRO).<a class="headerlink" href="#digital-reference-object-dro" title="Permalink to this headline">#</a></h3>
 <p>DRO data was used from the quantitative imaging biomarker alliance (QIBA).
@@ -878,7 +878,9 @@ ZA_McGill_Can         0.000304  0.001193  -0.002035   0.002643
 <p>The contribtutions that use two flip angles (n = 2) have not been added to the test results yet.</p>
 <section id="references">
 <h3>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h3>
-<p>Bland JM and Altman DG “Measuring agreement in method comparison studies” Statistical Methods in Medical Research 1999; 8: 135-160</p>
+<p>Bland JM and Altman DG “Measuring agreement in method comparison studies” Statistical Methods in Medical Research, 1999; 8: 135-160</p>
+<p>Deoni et al “High-resolution T1 and T2 mapping of the brain in a clinically acceptable time with DESPOT1 and DESPOT2” Magn Reson Med, 2005; 53(1):237-41. doi: 10.1002/mrm.20314</p>
+<p>Fram et al. “Rapid calculation of T1 using variable flip angle gradient refocused imaging” Magn Reson Imaging, 1987;5(3):201-8. doi: 10.1016/0730-725x(87)90021-x</p>
 </section>
 </section>
 </section>

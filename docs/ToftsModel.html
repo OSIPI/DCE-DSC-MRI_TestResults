@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -408,11 +408,6 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background">
-   Background
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#test-data">
    Test data
   </a>
@@ -477,11 +472,6 @@ title="Print to PDF"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#background">
-   Background
-  </a>
- </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#test-data">
    Test data
@@ -556,10 +546,6 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<section id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
-<p>[to do add some background info here]</p>
-</section>
 <section id="test-data">
 <h2>Test data<a class="headerlink" href="#test-data" title="Permalink to this headline">#</a></h2>
 <p>The QIBA DRO data was used for testing of the Tofts model.</p>
@@ -575,8 +561,8 @@ title="Print to PDF"
 <li><p>datT4 = np.mean(data[22:27, 32:37, :], (0, 1))</p></li>
 <li><p>datT5 = np.mean(data[22:27, 43:48, :], (0, 1))</p></li>
 </ul>
-<p>Noise was added to the high-SNR data to obtain data at different SNRs. SNR-levels of 20, 30, 50, and 100 were included.
-A delayed version of the test data was created by shifting the time curves with 5 time points. This data is labeled as ‘delayed’ and only used with the models that allow the fitting of a delay.</p>
+<p>Noise was added to the high-SNR data to obtain data at different SNRs. SNR-levels of 20, 30, 50, and 100 were included.</p>
+<p>A delayed version of the test data was created by shifting the time curves with 5 time points. This data is labeled as ‘delayed’ and only used with the models that allow the fitting of a delay.</p>
 <p>The DRO data are signal values, which were converted to concentration curves using dce_to_r1eff from <a class="reference external" href="https://github.com/welcheb/pydcemri/blob/master">https://github.com/welcheb/pydcemri/blob/master</a> from David S. Smith</p>
 <p>Input values and reference values were found from the accompanying pdf document, which describes the values per voxel.</p>
 <ul class="simple">
@@ -642,7 +628,7 @@ Here we show the data from high SNR from the original (first row) DRO and lowest
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ToftsModel_5_0.png" src="_images/ToftsModel_5_0.png" />
+<img alt="_images/ToftsModel_4_0.png" src="_images/ToftsModel_4_0.png" />
 </div>
 </div>
 </section>
@@ -811,7 +797,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ToftsModel_15_0.png" src="_images/ToftsModel_15_0.png" />
+<img alt="_images/ToftsModel_14_0.png" src="_images/ToftsModel_14_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -831,7 +817,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ToftsModel_16_0.png" src="_images/ToftsModel_16_0.png" />
+<img alt="_images/ToftsModel_15_0.png" src="_images/ToftsModel_15_0.png" />
 </div>
 </div>
 <p>Bias results estimated <span class="math notranslate nohighlight">\(K^{trans}\)</span> values combined for all voxels and all SNR levels</p>
@@ -896,7 +882,7 @@ ST_USyd_Aus            0.000052  0.001132  -0.002166   0.002271
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ToftsModel_22_0.png" src="_images/ToftsModel_22_0.png" />
+<img alt="_images/ToftsModel_21_0.png" src="_images/ToftsModel_21_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -915,7 +901,7 @@ ST_USyd_Aus            0.000052  0.001132  -0.002166   0.002271
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ToftsModel_23_0.png" src="_images/ToftsModel_23_0.png" />
+<img alt="_images/ToftsModel_22_0.png" src="_images/ToftsModel_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">

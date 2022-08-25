@@ -21,7 +21,7 @@
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -37,7 +37,7 @@
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -641,7 +641,8 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <img alt="_images/SItoC_10_0.png" src="_images/SItoC_10_0.png" />
 </div>
 </div>
-<p>Plot bland altman figure of error between output concentration values and reference values vs the reference values. All datapoints from all test curves are combined into one figure</p>
+<p>Plot bland altman figure of error between output concentration values and reference values vs the reference values. All datapoints from all test curves are combined into one figure.
+Six of the seven implementation give near identical results. One implementation showed small deviations (MJT_UoEdinburgh_UK_num, &lt; <span class="math notranslate nohighlight">\(5e^{-7}\)</span> mM), but please note that the limits of the y-axis are extremely small.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set-up styling for seaborn plots</span>
@@ -669,8 +670,8 @@ Reference to code: Reavey, J.J., Walker, C., Nicol, M., Murray, A.A., Critchley,
 <img alt="_images/SItoC_13_0.png" src="_images/SItoC_13_0.png" />
 </div>
 </div>
-<p>Calculate bias and limits of agreement for all contributions wrt the reference values.
-The differences between measured and reference values are really small for the current test data. There are slight differences between contributions, that can be attributed due to slight diferences in implementations.</p>
+<p>Calculate bias and limits of agreement for all contributions wrt the reference values.</p>
+<p>The differences between measured and reference values are really small for the current test data. There are slight differences between contributions, that can be attributed due to minor diferences in implementations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resultsBA</span> <span class="o">=</span> <span class="n">bland_altman_statistics</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">par</span><span class="o">=</span><span class="s1">&#39;error_conc&#39;</span><span class="p">,</span><span class="n">grouptag</span><span class="o">=</span><span class="s1">&#39;author&#39;</span><span class="p">)</span>
