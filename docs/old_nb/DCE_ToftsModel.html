@@ -497,6 +497,22 @@ for more information.
   warnings.warn(msg)
 </pre></div>
 </div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">osipi_code_collection.wrappers.tofts</span> <span class="kn">import</span> <span class="n">tofts_fit</span><span class="p">,</span> <span class="n">show_maps</span><span class="p">,</span> <span class="n">show_error_maps</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">osipi_code_collection.utils.nb</span> <span class="kn">import</span> <span class="n">download_osf</span><span class="p">,</span> <span class="n">loadmat</span>
+
+<span class="n">File</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">hostedtoolcache</span><span class="o">/</span><span class="n">Python</span><span class="o">/</span><span class="mf">3.8.13</span><span class="o">/</span><span class="n">x64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">osipi_code_collection</span><span class="o">/</span><span class="n">wrappers</span><span class="o">/</span><span class="n">tofts</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">14</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="kn">import</span> <span class="nn">osipi_code_collection.original.MJT_UoEdinburgh_UK.dce_fit</span> <span class="k">as</span> <span class="nn">edinburgh2_fit</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="kn">import</span> <span class="nn">osipi_code_collection.original.OGJ_OsloU_NOR.MRImageAnalysis.DCE.Analyze</span> <span class="k">as</span> <span class="nn">oslo</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="kn">import</span> <span class="nn">osipi_code_collection.original.ST_USydAUS.ModelDictionary</span> <span class="k">as</span> <span class="nn">sydney</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span> <span class="nn">osipi_code_collection.original.MB_QBI_UoManchester_UK.QbiPy.dce_models</span> <span class="kn">import</span> <span class="n">dce_aif</span> <span class="k">as</span> <span class="n">manchester_aif</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span> <span class="nn">osipi_code_collection.original.MB_QBI_UoManchester_UK.QbiPy.dce_models</span> <span class="kn">import</span> <span class="n">tofts_model</span> <span class="k">as</span> <span class="n">manchester_tofts</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;osipi_code_collection.original.ST_USydAUS&#39;
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">
@@ -508,33 +524,6 @@ for more information.
 
 <span class="c1"># Load the QIBA phantom data</span>
 <span class="n">dcedata</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="n">dcefile</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">Input In [3],</span> in <span class="ni">&lt;cell line: 4&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://osf.io/xhn3y/download&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">dcefile</span> <span class="o">=</span> <span class="s2">&quot;./data/qiba_tofts.mat&quot;</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">download_osf</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">dcefile</span><span class="p">);</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># Load the QIBA phantom data</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">dcedata</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="n">dcefile</span><span class="p">)</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/site-packages/osipi_code_collection/utils/nb.py:19,</span> in <span class="ni">download_osf</span><span class="nt">(url, file, overwrite)</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Skipping: </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="k">return</span>
-<span class="ne">---&gt; </span><span class="mi">19</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlretrieve</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">return</span>
-
-<span class="nn">File /opt/hostedtoolcache/Python/3.8.13/x64/lib/python3.8/urllib/request.py:257,</span> in <span class="ni">urlretrieve</span><span class="nt">(url, filename, reporthook, data)</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span> <span class="c1"># Handle temporary file setup.</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span> <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">257</span>     <span class="n">tfp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="n">tfp</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;./data/qiba_tofts.mat&#39;
 </pre></div>
 </div>
 </div>
