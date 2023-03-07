@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from osipi_code_collection.wrappers.tofts import tofts_fit, show_maps, show_error_maps
+from osipi_code_collection.utils.nb import download_osf, loadmat
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[2], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01mwrappers[39;00m[38;5;21;01m.[39;00m[38;5;21;01mtofts[39;00m [38;5;28;01mimport[39;00m tofts_fit, show_maps, show_error_maps
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01mutils[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnb[39;00m [38;5;28;01mimport[39;00m download_osf, loadmat
+
+File [0;32m/opt/hostedtoolcache/Python/3.8.16/x64/lib/python3.8/site-packages/osipi_code_collection/wrappers/tofts.py:14[0m
+[1;32m     12[0m [38;5;28;01mimport[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01moriginal[39;00m[38;5;21;01m.[39;00m[38;5;21;01mMJT_UoEdinburgh_UK[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdce_fit[39;00m [38;5;28;01mas[39;00m [38;5;21;01medinburgh2_fit[39;00m
+[1;32m     13[0m [38;5;28;01mimport[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01moriginal[39;00m[38;5;21;01m.[39;00m[38;5;21;01mOGJ_OsloU_NOR[39;00m[38;5;21;01m.[39;00m[38;5;21;01mMRImageAnalysis[39;00m[38;5;21;01m.[39;00m[38;5;21;01mDCE[39;00m[38;5;21;01m.[39;00m[38;5;21;01mAnalyze[39;00m [38;5;28;01mas[39;00m [38;5;21;01moslo[39;00m
+[0;32m---> 14[0m [38;5;28;01mimport[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01moriginal[39;00m[38;5;21;01m.[39;00m[38;5;21;01mST_USydAUS[39;00m[38;5;21;01m.[39;00m[38;5;21;01mModelDictionary[39;00m [38;5;28;01mas[39;00m [38;5;21;01msydney[39;00m
+[1;32m     15[0m [38;5;28;01mfrom[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01moriginal[39;00m[38;5;21;01m.[39;00m[38;5;21;01mMB_QBI_UoManchester_UK[39;00m[38;5;21;01m.[39;00m[38;5;21;01mQbiPy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdce_models[39;00m [38;5;28;01mimport[39;00m dce_aif [38;5;28;01mas[39;00m manchester_aif
+[1;32m     16[0m [38;5;28;01mfrom[39;00m [38;5;21;01mosipi_code_collection[39;00m[38;5;21;01m.[39;00m[38;5;21;01moriginal[39;00m[38;5;21;01m.[39;00m[38;5;21;01mMB_QBI_UoManchester_UK[39;00m[38;5;21;01m.[39;00m[38;5;21;01mQbiPy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdce_models[39;00m [38;5;28;01mimport[39;00m tofts_model [38;5;28;01mas[39;00m manchester_tofts
+
+[0;31mModuleNotFoundError[0m: No module named 'osipi_code_collection.original.ST_USydAUS'
+ModuleNotFoundError: No module named 'osipi_code_collection.original.ST_USydAUS'
+
