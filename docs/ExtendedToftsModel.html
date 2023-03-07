@@ -787,7 +787,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 <span class="c1">#sns.set(font_scale=1.5)</span>
 <span class="c1">#sns.set_style(&quot;whitegrid&quot;)</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">)})</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;talk&quot;</span><span class="p">,</span> <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">)})</span>
 </pre></div>
 </div>
 </div>
@@ -800,7 +800,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_Ktrans&quot;</span><span class="p">,</span>
               <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
               <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
-              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $K^</span><span class="si">{trans}</span><span class="s2">$ ($min^{-1}$)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
@@ -811,7 +811,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d29b126c153543f2dd16c02739f7692364672f2d6efffd1d533f4ce49829d5f3.png" src="_images/d29b126c153543f2dd16c02739f7692364672f2d6efffd1d533f4ce49829d5f3.png" />
+<img alt="_images/59a734181c43d5c28860f6c6cd8458adf1497649be4a46734993eeebbaa12781.png" src="_images/59a734181c43d5c28860f6c6cd8458adf1497649be4a46734993eeebbaa12781.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -820,7 +820,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;voxel&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;error_ve&quot;</span><span class="p">,</span>
               <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]],</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">,</span>
               <span class="n">col</span><span class="o">=</span><span class="s2">&quot;source&quot;</span><span class="p">,</span> <span class="n">col_order</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SNR 20&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 30&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 50&quot;</span><span class="p">,</span><span class="s2">&quot;SNR 100&quot;</span><span class="p">,</span><span class="s2">&quot;high SNR&quot;</span><span class="p">],</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;swarm&quot;</span><span class="p">,</span>
-              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+              <span class="n">col_wrap</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span> <span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set_titles</span><span class="p">(</span><span class="n">col_template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{col_name}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s2">&quot;$\Delta$ $v_</span><span class="si">{e}</span><span class="s2">$ (-)&quot;</span><span class="p">,</span> <span class="n">clear_inner</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
@@ -831,7 +831,7 @@ The data are shown with a categorial swarm plot, so for each text voxel separate
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b7fc2d84c5f39fa98d5f112d71cc06395765a44954bffc0729f5727e6023eaab.png" src="_images/b7fc2d84c5f39fa98d5f112d71cc06395765a44954bffc0729f5727e6023eaab.png" />
+<img alt="_images/2c1ff56a4e5a7fe02c3e8d446c24e5e2372a282658a058a87dc5a1e194f17733.png" src="_images/2c1ff56a4e5a7fe02c3e8d446c24e5e2372a282658a058a87dc5a1e194f17733.png" />
 </div>
 </div>
 <div class="cell docutils container">
